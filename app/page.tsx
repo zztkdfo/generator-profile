@@ -1,18 +1,10 @@
 "use client";
 import { useState } from "react";
-import {
-  FiChevronLeft,
-  FiChevronRight,
-  FiChevronDown,
-  FiUser,
-  FiCode,
-  FiFolder,
-} from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 interface MenuItem {
   title: string;
-  items: string[];
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
 export default function Home() {
@@ -20,21 +12,14 @@ export default function Home() {
   const [isMenuCollapsed, setIsMenuCollapsed] = useState<boolean>(false);
 
   const menuItems: MenuItem[] = [
-    {
-      title: "프로필",
-      items: ["기본 정보", "소개", "연락처"],
-      icon: <FiUser className="w-5 h-5" />,
-    },
-    {
-      title: "스킬",
-      items: ["언어", "프레임워크", "도구"],
-      icon: <FiCode className="w-5 h-5" />,
-    },
-    {
-      title: "프로젝트",
-      items: ["주요 프로젝트", "기여", "저장소"],
-      icon: <FiFolder className="w-5 h-5" />,
-    },
+    // 메뉴 변경 및 컨텐츠 추가 할 것.
+    { title: "소개" },
+    { title: "보유 기술" },
+    { title: "연락하기" },
+    { title: "깃허브 통계" },
+    { title: "최근 블로그 포스트" },
+    { title: "스포티파이 듣기" },
+    { title: "방문자 수" },
   ];
 
   return (
@@ -45,67 +30,42 @@ export default function Home() {
           isMenuCollapsed ? "w-24" : "w-64"
         } bg-[#1a1f2c] text-cyan-50 shadow-lg transition-all duration-300`}
       >
-        <div className="p-4">
-          {/* 헤더 영역: 로고만 표시 */}
-          <div className="flex items-center justify-center mb-20">
-            {isMenuCollapsed ? (
-              <h2 className="text-md font-bold ml-2">어프생</h2>
-            ) : (
-              <h1 className="text-xl font-bold ml-2">어쩌다 Profile Maker</h1>
-            )}
-          </div>
+        {/* 로고 영역 - h-16으로 헤더와 높이 맞춤 */}
+        <div className="h-16 flex items-center px-4 border-b border-gray-700 text-center">
+          <h1 className="text-xl font-bold text-white">어쩌다 Profile Maker</h1>
+        </div>
 
-          <nav className="space-y-2">
-            {menuItems.map((section) => (
+        <div className="p-4">
+          <nav className="space-y-2 mt-3">
+            {menuItems.map((item) => (
               <div
-                key={section.title}
-                className="border border-gray-700 rounded-lg"
+                key={item.title}
+                className={`rounded-md transition-colors duration-150 ${
+                  activeMenu === item.title
+                    ? "bg-blue-600"
+                    : "hover:bg-[#2a2f3c]"
+                }`}
               >
                 <button
-                  onClick={() =>
-                    setActiveMenu(
-                      activeMenu === section.title ? null : section.title
-                    )
-                  }
-                  className="w-full p-3 text-left text-gray-300 hover:bg-[#2a2f3c] flex justify-between items-center"
+                  onClick={() => setActiveMenu(item.title)}
+                  className="w-full p-3 text-left text-gray-300 flex items-center"
                 >
-                  {isMenuCollapsed ? (
-                    <span className="mx-auto">{section.icon}</span>
-                  ) : (
-                    <>
-                      <span className="flex items-center gap-2">
-                        {section.icon}
-                        {section.title}
-                      </span>
-                      <FiChevronDown
-                        className={`transform transition-transform duration-200 ${
-                          activeMenu === section.title ? "rotate-180" : ""
-                        }`}
-                      />
-                    </>
-                  )}
+                  <span className="flex items-center gap-2">{item.title}</span>
                 </button>
-                {!isMenuCollapsed && activeMenu === section.title && (
-                  <div className="bg-[#2a2f3c] p-2">
-                    {section.items.map((item) => (
-                      <div
-                        key={item}
-                        className="px-4 py-2 text-gray-400 hover:text-gray-200 hover:bg-[#353a47] cursor-pointer rounded-md transition-colors duration-150 flex items-center gap-2"
-                      >
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
             ))}
+
+            {/* 섹션 추가 버튼 */}
+            <button className="w-full mt-4 p-3 text-gray-300 border border-dashed border-gray-600 rounded-md hover:border-gray-400 transition-colors duration-150 flex items-center justify-center gap-2">
+              <span>+ 섹션</span>
+            </button>
           </nav>
         </div>
       </div>
 
       {/* 오른쪽 콘텐츠 영역 */}
       <div className="flex-1">
-        {/* 상단 헤더 바 추가 */}
+        {/* 상단 헤더 바 - h-16으로 로고와 높이 동일 */}
         <div className="h-16 shadow-sm flex items-center px-4">
           <button
             onClick={() => setIsMenuCollapsed(!isMenuCollapsed)}
@@ -123,7 +83,7 @@ export default function Home() {
         </div>
 
         {/* 콘텐츠 영역 */}
-        <div className="p-8">
+        <div className="p-7">
           <div className="bg-white rounded-lg shadow-lg p-6 min-h-[calc(100vh-4rem)]">
             <h2 className="text-xl font-bold mb-4">UI / Markdown 편집기</h2>
             {/* 여기에 선택된 메뉴에 따른 콘텐츠가 표시될 예정 */}
