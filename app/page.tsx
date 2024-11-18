@@ -39,22 +39,21 @@ export default function Home() {
       <div
         className={`${
           isMenuCollapsed ? "w-16" : "w-64"
-        } bg-white shadow-lg transition-all duration-300`}
+        } bg-[#1a1f2c] text-cyan-50 shadow-lg transition-all duration-300`}
       >
         <div className="p-4">
-          {/* 메뉴 접기/펼치기 버튼 */}
-          <button
-            onClick={toggleCollapse}
-            className="w-full flex justify-end mb-4 text-gray-500 hover:text-gray-700"
-          >
-            {isMenuCollapsed ? "▶" : "◀"}
-          </button>
-
-          {!isMenuCollapsed && (
-            <h1 className="text-xl font-bold text-gray-800 mb-4">
-              프로필 생성기
-            </h1>
-          )}
+          {/* 헤더 영역: 로고와 접기/펼치기 버튼을 같은 행에 배치 */}
+          <div className="flex items-center justify-between mb-4">
+            {!isMenuCollapsed && (
+              <h1 className="text-xl font-bold">프로필 생성기</h1>
+            )}
+            <button
+              onClick={() => setIsMenuCollapsed(!isMenuCollapsed)}
+              className="text-gray-400 hover:text-gray-200"
+            >
+              {isMenuCollapsed ? "▶" : "◀"}
+            </button>
+          </div>
 
           <nav className="space-y-2">
             {menuItems.map((section: MenuItem) => (
