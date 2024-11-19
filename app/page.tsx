@@ -56,13 +56,11 @@ export default function Home() {
                 <h2 className="text-xl font-bold mb-4">
                   {menuItems.find((item) => item.id === activeMenu)?.title}
                 </h2>
-                {/* 여기에 선택된 메뉴의 title이 표시될 예정 */}
               </div>
 
               {/* 오른쪽 영역 */}
               <div className="flex-1 bg-white rounded-lg shadow p-4">
                 <h2 className="text-xl font-bold mb-4">My Profile</h2>
-                {/* 여기에 프로필 관련 내용이 표시될 예정 */}
               </div>
             </div>
           </div>
