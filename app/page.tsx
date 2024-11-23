@@ -9,7 +9,7 @@ export interface MenuItem {
 }
 
 export default function Home() {
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [activeMenu, setActiveMenu] = useState<string | null>("1");
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
     { id: "1", title: "소개" },
     { id: "2", title: "보유 기술" },
@@ -41,9 +41,11 @@ export default function Home() {
       {/* 오른쪽 콘텐츠 영역 */}
       <div className="flex-1 flex flex-col">
         {/* 상단 헤더 바 */}
-        <div className="h-16 shadow-sm flex items-center px-4">
+        <div className="h-16 shadow-sm flex items-center px-8">
           <div className="flex items-center">
-            <h2 className="text-xl font-bold">콘텐츠 영역</h2>
+            <h2 className="text-2xl font-bold">
+              {menuItems.find((item) => item.id === activeMenu)?.title}
+            </h2>
           </div>
         </div>
 
@@ -53,9 +55,7 @@ export default function Home() {
             <div className="flex gap-6">
               {/* 왼쪽 영역 */}
               <div className="flex-1 bg-white rounded-lg shadow p-4">
-                <h2 className="text-xl font-bold mb-4">
-                  {menuItems.find((item) => item.id === activeMenu)?.title}
-                </h2>
+                <h2 className="text-xl font-bold mb-4"></h2>
               </div>
 
               {/* 오른쪽 영역 */}
