@@ -5,6 +5,7 @@ import { DropResult } from "@hello-pangea/dnd";
 import SidebarHeader from "./SidebarHeader";
 import MenuList from "../menu/MenuList";
 import { MenuItem } from "@/app/page";
+import { v4 as uuid } from "uuid";
 
 interface SidebarProps {
   activeMenu: string | null;
@@ -58,7 +59,7 @@ export default function Sidebar({
   );
 
   const handleAddSection = useCallback(() => {
-    const newId = String(menuItems.length + 1);
+    const newId = uuid();
     const newSection: MenuItem = {
       id: newId,
       title: "New Section",
