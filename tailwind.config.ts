@@ -29,6 +29,8 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#2563eb", // blue-600
+        secondary: "#2a2f3c", // 기존 hover 색상
       },
     },
   },

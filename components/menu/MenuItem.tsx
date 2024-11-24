@@ -41,7 +41,7 @@ export default function MenuItem({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           className={`rounded-md transition-colors duration-150 mb-2 cursor-pointer ${
-            activeMenu === item.id ? "bg-blue-600" : "hover:bg-[#2a2f3c]"
+            activeMenu === item.id ? "bg-primary" : "hover:bg-secondary"
           }`}
           onClick={() => {
             handleActiveMenuChange(item.id);

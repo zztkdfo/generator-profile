@@ -2,6 +2,7 @@
 
 import Sidebar from "@/components/layout/Sidebar";
 import { useCallback, useState } from "react";
+import Button from "@/components/component/button/Button";
 export interface MenuItem {
   id: string;
   title: string;
@@ -42,10 +43,15 @@ export default function Home() {
       <div className="flex-1 flex flex-col">
         {/* 상단 헤더 바 */}
         <div className="h-16 shadow-sm flex items-center px-8">
-          <div className="flex items-center">
-            <h2 className="text-2xl font-bold">
-              {menuItems.find((item) => item.id === activeMenu)?.title}
-            </h2>
+          <div className="flex items-center justify-between w-full">
+            <div>
+              <h2 className="text-2xl font-bold">
+                {menuItems.find((item) => item.id === activeMenu)?.title}
+              </h2>
+            </div>
+            <div>
+              <Button radius="large">🚀 Copy Readme</Button>
+            </div>
           </div>
         </div>
 
