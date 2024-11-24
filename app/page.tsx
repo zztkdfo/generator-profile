@@ -2,7 +2,7 @@
 
 import Sidebar from "@/components/layout/Sidebar";
 import { useCallback, useState } from "react";
-import Button from "@/components/component/button/Button";
+import Button from "@/components/common/button/Button";
 export interface MenuItem {
   id: string;
   title: string;
@@ -10,6 +10,9 @@ export interface MenuItem {
 }
 
 export default function Home() {
+  const [templateData, setTemplateData] = useState<string>(""); // 템플릿 데이터
+  const [markdownOutput, setMarkdownOutput] = useState<string>(""); // 변환된 마크다운
+
   const [activeMenu, setActiveMenu] = useState<string | null>("1");
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
     { id: "1", title: "소개" },
@@ -28,6 +31,26 @@ export default function Home() {
   const handleActiveMenuChange = useCallback((menu: string | null) => {
     setActiveMenu(menu);
   }, []);
+
+  // 템플릿 데이터가 변경될 때 마크다운으로 변환하는 함수
+  const handleTemplateChange = useCallback((data: string) => {
+    setTemplateData(data);
+    // 여기서 데이터를 마크다운으로 변환하는 로직 추가
+    const convertedMarkdown = convertToMarkdown(data); // 변환 함수는 별도 구현 필요
+    setMarkdownOutput(convertedMarkdown);
+  }, []);
+
+  const convertToMarkdown = useCallback((data: string) => {
+    return data;
+  }, []);
+
+  // 마크다운 복사 함수
+  const handleCopyMarkdown = useCallback(() => {
+    navigator.clipboard
+      .writeText(markdownOutput)
+      .then(() => alert("마크다운이 클립보드에 복사되었습니다!"))
+      .catch((err) => console.error("복사 실패:", err));
+  }, [markdownOutput]);
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -50,7 +73,9 @@ export default function Home() {
               </h2>
             </div>
             <div>
-              <Button radius="large">🚀 Copy Readme</Button>
+              <Button radius="large" onClick={handleCopyMarkdown}>
+                🚀 Copy Readme
+              </Button>
             </div>
           </div>
         </div>
