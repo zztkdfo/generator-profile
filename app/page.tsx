@@ -1,8 +1,9 @@
 "use client";
 
+import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
 import { useCallback, useState } from "react";
-import Button from "@/components/common/button/Button";
+
 export interface MenuItem {
   id: string;
   title: string;
@@ -71,20 +72,11 @@ export default function Home() {
       {/* 오른쪽 콘텐츠 영역 */}
       <div className="flex-1 flex flex-col">
         {/* 상단 헤더 바 */}
-        <div className="h-16 shadow-sm flex items-center px-8">
-          <div className="flex items-center justify-between w-full">
-            <div>
-              <h2 className="text-2xl font-bold">
-                {menuItems.find((item) => item.id === activeMenu)?.title}
-              </h2>
-            </div>
-            <div className="flex gap-2">
-              <Button radius="large" onClick={handleCopyMarkdown}>
-                🚀 Copy Readme
-              </Button>
-            </div>
-          </div>
-        </div>
+        <Header
+          menuItems={menuItems}
+          activeMenu={activeMenu}
+          handleCopyMarkdown={handleCopyMarkdown}
+        />
 
         {/* 콘텐츠 영역 */}
         <div className="flex-1 p-7">

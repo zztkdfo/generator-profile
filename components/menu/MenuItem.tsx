@@ -1,13 +1,9 @@
 import { FiEdit2, FiTrash2, FiCheck } from "react-icons/fi";
 import { Draggable } from "@hello-pangea/dnd";
-
-interface MenuItem {
-  id: string;
-  title: string;
-}
+import { MenuItemType } from "@/types/types";
 
 interface MenuItemProps {
-  item: MenuItem;
+  item: MenuItemType;
   index: number;
   activeMenu: string | null;
   editingId: string | null;
