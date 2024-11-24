@@ -2,7 +2,7 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent) => void;
   disabled?: boolean;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "error" | "warning" | "success";
   size?: "small" | "medium" | "large";
   radius?: "none" | "small" | "medium" | "large" | "full";
   type?: "button" | "submit" | "reset";
@@ -23,6 +23,9 @@ export default function Button({
     primary: "bg-primary text-white hover:bg-primary/80",
     secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
     ghost: "bg-transparent hover:bg-gray-100",
+    error: "bg-red-500 text-white hover:bg-red-600",
+    warning: "bg-yellow-500 text-white hover:bg-yellow-600",
+    success: "bg-green-500 text-white hover:bg-green-600",
   };
 
   const sizeStyles = {

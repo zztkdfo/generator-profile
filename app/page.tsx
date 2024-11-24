@@ -24,25 +24,31 @@ export default function Home() {
     { id: "7", title: "방문자 수" },
   ]);
 
+  // 메뉴 아이템 변경 함수
   const handleMenuUpdate = useCallback((updatedItems: MenuItem[]) => {
     setMenuItems(updatedItems);
   }, []);
 
+  // 메뉴 아이템 변경 함수
   const handleActiveMenuChange = useCallback((menu: string | null) => {
     setActiveMenu(menu);
   }, []);
 
-  // 템플릿 데이터가 변경될 때 마크다운으로 변환하는 함수
-  const handleTemplateChange = useCallback((data: string) => {
-    setTemplateData(data);
-    // 여기서 데이터를 마크다운으로 변환하는 로직 추가
-    const convertedMarkdown = convertToMarkdown(data); // 변환 함수는 별도 구현 필요
-    setMarkdownOutput(convertedMarkdown);
-  }, []);
-
-  const convertToMarkdown = useCallback((data: string) => {
+  // 마크다운 변환 함수
+  const handleConvertToMarkdown = useCallback((data: string) => {
     return data;
   }, []);
+
+  // 템플릿 데이터가 변경될 때 마크다운으로 변환하는 함수
+  const handleTemplateChange = useCallback(
+    (data: string) => {
+      setTemplateData(data);
+      // 여기서 데이터를 마크다운으로 변환하는 로직 추가
+      const convertedMarkdown = handleConvertToMarkdown(data); // 변환 함수는 별도 구현 필요
+      setMarkdownOutput(convertedMarkdown);
+    },
+    [handleConvertToMarkdown]
+  );
 
   // 마크다운 복사 함수
   const handleCopyMarkdown = useCallback(() => {
@@ -72,7 +78,7 @@ export default function Home() {
                 {menuItems.find((item) => item.id === activeMenu)?.title}
               </h2>
             </div>
-            <div>
+            <div className="flex gap-2">
               <Button radius="large" onClick={handleCopyMarkdown}>
                 🚀 Copy Readme
               </Button>
