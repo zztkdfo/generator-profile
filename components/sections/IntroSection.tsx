@@ -1,23 +1,70 @@
-interface IntroSectionProps {
-  text?: string;
+"use client";
+
+import { useState } from "react";
+
+interface IntroductionData {
+  mainTitle: string; // 대제목
+  email: string; // 이메일 주소
+  philosophy: string; // 본인의 철학
+  description: string; // 상세 소개글
 }
 
-const IntroSection = ({}: IntroSectionProps) => {
+const IntroSection = ({
+  onChange,
+}: {
+  onChange: (data: IntroductionData) => void;
+}) => {
+  const [introData, setIntroData] = useState<IntroductionData>({
+    mainTitle: "",
+    email: "",
+    philosophy: "",
+    description: "",
+  });
+
+  const handleChange = (field: keyof IntroductionData, value: string) => {
+    const newData = { ...introData, [field]: value };
+    setIntroData(newData);
+    onChange(newData);
+  };
+
   return (
-    <section className="flex flex-col items-center gap-6 py-12">
-      <h1 className="text-3xl font-bold">
-        안녕하세요 FE 개발자 OOO 입니다! 👋
-      </h1>
+    <div className="space-y-4">
+      <h2 className="text-xl font-bold">소개 섹션</h2>
 
-      <div className="flex gap-2"></div>
+      <div className="space-y-2">
+        <input
+          type="text"
+          placeholder="대제목 (예: Frontend Developer who loves React)"
+          className="w-full p-2 border rounded"
+          value={introData.mainTitle}
+          onChange={(e) => handleChange("mainTitle", e.target.value)}
+        />
 
-      <div className="mt-8 text-center">
-        <p>
-          문제의 본질을 파악하고 해결하는 데 가치를 두는 개발자입니다. ⭐ ✨
-        </p>
-        <p>함께 의미 있는 변화를 만들어 갈 기회를 기다리고 있습니다! 🚀</p>
+        <input
+          type="email"
+          placeholder="이메일 주소"
+          className="w-full p-2 border rounded"
+          value={introData.email}
+          onChange={(e) => handleChange("email", e.target.value)}
+        />
+
+        <textarea
+          placeholder="본인의 철학 (예: 사용자 경험을 최우선으로 생각합니다)"
+          className="w-full p-2 border rounded"
+          rows={2}
+          value={introData.philosophy}
+          onChange={(e) => handleChange("philosophy", e.target.value)}
+        />
+
+        <textarea
+          placeholder="상세 소개글"
+          className="w-full p-2 border rounded"
+          rows={4}
+          value={introData.description}
+          onChange={(e) => handleChange("description", e.target.value)}
+        />
       </div>
-    </section>
+    </div>
   );
 };
 
