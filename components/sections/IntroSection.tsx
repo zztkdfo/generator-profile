@@ -35,7 +35,7 @@ const IntroSection = ({
         <input
           type="text"
           placeholder="대제목 (예: Frontend Developer who loves React)"
-          className="w-full p-2 border rounded"
+          className="w-full text-lg p-2 border rounded"
           value={introData.mainTitle}
           onChange={(e) => handleChange("mainTitle", e.target.value)}
         />
@@ -43,23 +43,15 @@ const IntroSection = ({
         <input
           type="email"
           placeholder="이메일 주소"
-          className="w-full p-2 border rounded"
+          className="w-full p-2 text-lg border rounded"
           value={introData.email}
           onChange={(e) => handleChange("email", e.target.value)}
         />
 
         <textarea
-          placeholder="본인의 철학 (예: 사용자 경험을 최우선으로 생각합니다)"
-          className="w-full p-2 border rounded"
-          rows={2}
-          value={introData.philosophy}
-          onChange={(e) => handleChange("philosophy", e.target.value)}
-        />
-
-        <textarea
           placeholder="상세 소개글"
-          className="w-full p-2 border rounded"
-          rows={4}
+          className="w-full p-2 text-lg border rounded"
+          rows={12}
           value={introData.description}
           onChange={(e) => handleChange("description", e.target.value)}
         />
