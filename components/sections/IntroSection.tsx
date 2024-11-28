@@ -1,5 +1,6 @@
 "use client";
 
+import { IntroductionDataType } from "@/types/types";
 import { useState } from "react";
 
 interface IntroductionData {
@@ -11,15 +12,12 @@ interface IntroductionData {
 
 const IntroSection = ({
   onChange,
+  initialData,
 }: {
   onChange: (data: IntroductionData) => void;
+  initialData: IntroductionDataType;
 }) => {
-  const [introData, setIntroData] = useState<IntroductionData>({
-    mainTitle: "",
-    email: "",
-    philosophy: "",
-    description: "",
-  });
+  const [introData, setIntroData] = useState<IntroductionDataType>(initialData);
 
   const handleChange = (field: keyof IntroductionData, value: string) => {
     const newData = { ...introData, [field]: value };

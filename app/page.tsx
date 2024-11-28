@@ -2,12 +2,18 @@
 import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
-import IntroSection from "@/components/sections/IntroSection";
-import { useCallback, useState } from "react";
+
+import { useCallback, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { IntroductionType } from "@/types/types";
-import { convertIntroductionToMarkdown } from "@/utils/utils";
+import { IntroductionDataType, SkillsDataType } from "@/types/types";
+import {
+  convertIntroductionToMarkdown,
+  convertSkillsToMarkdown,
+} from "@/utils/utils";
 import rehypeRaw from "rehype-raw";
+
+import IntroSection from "@/components/sections/IntroSection";
+import SkillsSection from "@/components/sections/SkillsSection";
 
 export interface MenuItem {
   id: string;
@@ -24,17 +30,22 @@ export default function Home() {
       philosophy: "",
       description: "",
     },
-    // 나중에 다른 섹션들이 추가될 수 있음
-    // skills: {},
-    // projects: {},
-    // etc...
+    skills: {
+      skills: [],
+    },
+    // 다른 섹션들도 필요에 따라 추가
+  });
+
+  // 각 섹션별 마크다운을 따로 관리
+  const [sectionMarkdowns, setSectionMarkdowns] = useState({
+    introduction: "",
+    skills: "",
+    // 다른 섹션들도 필요에 따라 추가
   });
 
   // 마크다운 문자열을 저장할 state
   const [markdownPreview, setMarkdownPreview] = useState("");
-
-  const [templateData, setTemplateData] = useState<string>(""); // 템플릿 데이터
-  const [markdownOutput, setMarkdownOutput] = useState<string>(""); // 변환된 마크다운
+  // const [markdownOutput, setMarkdownOutput] = useState<string>(""); // 변환된 마크다운
 
   const [activeMenu, setActiveMenu] = useState<string | null>("1");
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
@@ -57,7 +68,7 @@ export default function Home() {
     setActiveMenu(menu);
   }, []);
 
-  const handleIntroductionChange = (introData: IntroductionType) => {
+  const handleIntroductionChange = (introData: IntroductionDataType) => {
     setProfileData((prev) => ({
       ...prev,
       introduction: introData,
@@ -65,32 +76,97 @@ export default function Home() {
 
     // 마크다운 변환 및 미리보기 업데이트
     const markdown = convertIntroductionToMarkdown(introData);
-    setMarkdownPreview(markdown);
+    setSectionMarkdowns((prev) => ({
+      ...prev,
+      introduction: markdown,
+    }));
+
+    // 전체 마크다운 업데이트
+    updateMarkdownPreview({
+      ...sectionMarkdowns,
+      introduction: markdown,
+    });
   };
 
-  // 마크다운 변환 함수
-  const handleConvertToMarkdown = useCallback((data: string) => {
-    return data;
-  }, []);
+  // handleSkillsChange 함수 추가
+  const handleSkillsChange = (skillsData: SkillsDataType) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setProfileData((prev: any) => ({
+      ...prev,
+      skills: skillsData,
+    }));
 
-  // 템플릿 데이터가 변경될 때 마크다운으로 변환하는 함수
-  const handleTemplateChange = useCallback(
-    (data: string) => {
-      setTemplateData(data);
-      // 여기서 데이터를 마크다운으로 변환하는 로직 추가
-      const convertedMarkdown = handleConvertToMarkdown(data); // 변환 함수는 별도 구현 필요
-      setMarkdownOutput(convertedMarkdown);
-    },
-    [handleConvertToMarkdown]
-  );
+    const markdown = convertSkillsToMarkdown(skillsData);
+    setSectionMarkdowns((prev) => ({
+      ...prev,
+      skills: markdown,
+    }));
+
+    // 전체 마크다운 업데이트
+    updateMarkdownPreview({
+      ...sectionMarkdowns,
+      skills: markdown,
+    });
+  };
+  // 전체 마크다운 업데이트 함수
+  const updateMarkdownPreview = (markdowns: typeof sectionMarkdowns) => {
+    // 모든 섹션의 마크다운을 순서대로 결합
+    const combinedMarkdown = [
+      markdowns.introduction,
+      markdowns.skills,
+      // 다른 섹션들의 마크다운도 순서대로 추가
+    ]
+      .filter(Boolean)
+      .join("\n\n");
+
+    setMarkdownPreview(combinedMarkdown);
+  };
 
   // 마크다운 복사 함수
   const handleCopyMarkdown = useCallback(() => {
-    navigator.clipboard
-      .writeText(markdownOutput)
-      .then(() => alert("마크다운이 클립보드에 복사되었습니다!"))
-      .catch((err) => console.error("복사 실패:", err));
-  }, [markdownOutput]);
+    // navigator.clipboard
+    //   .writeText(markdownOutput)
+    //   .then(() => alert("마크다운이 클립보드에 복사되었습니다!"))
+    //   .catch((err) => console.error("복사 실패:", err));
+    // }, [markdownOutput]);
+  }, []);
+
+  // 현재 선택된 메뉴에 따라 섹션을 렌더링하는 함수
+  const renderActiveSection = useMemo(() => {
+    switch (activeMenu) {
+      case "1":
+        return (
+          <IntroSection
+            onChange={handleIntroductionChange}
+            initialData={profileData.introduction}
+          />
+        );
+      case "2":
+        return (
+          <SkillsSection
+            onChange={handleSkillsChange}
+            initialData={profileData.skills}
+          />
+        );
+        // case "3":
+        //   return <ContactSection />;
+        // case "4":
+        //   return <GithubStatsSection />;
+        // case "5":
+        //   return <BlogPostsSection />;
+        // case "6":
+        //   return <SpotifySection />;
+        // case "7":
+        //   return <VisitorsSection />;
+        // default:
+        return (
+          <IntroSection
+            onChange={handleIntroductionChange}
+            initialData={profileData.introduction}
+          />
+        );
+    }
+  }, [activeMenu, profileData, handleIntroductionChange, handleSkillsChange]);
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -116,9 +192,7 @@ export default function Home() {
             <div className="flex gap-6">
               {/* 왼쪽 영역 */}
               <div className="w-[600px] min-w-[600px] bg-white rounded-lg shadow p-4">
-                <h2 className="text-xl font-bold mb-4">
-                  <IntroSection onChange={handleIntroductionChange} />
-                </h2>
+                {renderActiveSection}
               </div>
 
               {/* 오른쪽 영역 */}

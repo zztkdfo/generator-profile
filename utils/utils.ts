@@ -1,7 +1,7 @@
-import { IntroductionType } from "@/types/types";
+import { IntroductionDataType, SkillsDataType } from "@/types/types";
 
 export const convertIntroductionToMarkdown = (
-  data: IntroductionType
+  data: IntroductionDataType
 ): string => {
   if (!data.mainTitle && !data.email && !data.philosophy && !data.description) {
     return "# Welcome to my GitHub Profile!\n\n_프로필 정보를 입력해주세요._";
@@ -44,5 +44,28 @@ ${
     : ""
 }
 
-<img align='right' src='https://github.githubassets.com/images/mona-whisper.gif'  width='200'>`;
+<img align='right' src='https://github.githubassets.com/images/mona-whisper.gif'  width='200'> \n`;
+};
+
+export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {
+  let markdown = "## 보유 기술\n\n";
+
+  const skillsByCategory: { [key: string]: typeof skillsData.skills } = {};
+
+  skillsData.skills.forEach((skill) => {
+    if (!skillsByCategory[skill.category]) {
+      skillsByCategory[skill.category] = [];
+    }
+    skillsByCategory[skill.category].push(skill);
+  });
+
+  Object.entries(skillsByCategory).forEach(([category, skills]) => {
+    markdown += `### ${category}\n`;
+    skills.forEach((skill) => {
+      markdown += `- ${skill.name} (${"★".repeat(skill.level)})\n`;
+    });
+    markdown += "\n";
+  });
+
+  return markdown;
 };
