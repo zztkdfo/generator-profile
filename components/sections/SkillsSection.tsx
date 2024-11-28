@@ -4,77 +4,8 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 
 import { SkillsDataType } from "@/types/types";
-import {
-  FaReact,
-  FaNodeJs,
-  FaDocker,
-  FaAws,
-  FaGithub,
-  FaGitlab,
-  FaPhp,
-  FaPython,
-  FaJava,
-  FaLinux,
-  FaNpm,
-  FaYarn,
-  FaSass,
-  FaAngular,
-  FaVuejs,
-  FaBootstrap,
-  FaFigma,
-  FaJira,
-} from "react-icons/fa";
-
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiJavascript,
-  SiMongodb,
-  SiPostgresql,
-  SiMysql,
-  SiRedis,
-  SiGraphql,
-  SiSpring,
-  SiDjango,
-  SiFlask,
-  SiLaravel,
-  SiNestjs,
-  SiExpress,
-  SiTailwindcss,
-  SiCss3,
-  SiHtml5,
-  SiKubernetes,
-  SiJenkins,
-  SiGit,
-  SiRedux,
-  SiVite,
-  SiWebpack,
-  SiElasticsearch,
-  SiNginx,
-  SiApache,
-  SiSwift,
-  SiKotlin,
-  SiFlutter,
-  SiReactquery,
-  SiPrisma,
-  SiSequelize,
-  SiVercel,
-  SiNetlify,
-  SiHeroku,
-  SiAmazonec2,
-  SiAmazons3,
-  SiGooglecloud,
-  SiMicrosoftazure,
-  SiStorybook,
-  SiJest,
-  SiCypress,
-  SiPostman,
-  SiSwagger,
-  SiWebstorm,
-  SiVisualstudiocode,
-  SiIntellijidea,
-  SiEclipseide,
-} from "react-icons/si";
+import { skillIcons } from "./data/skillIcons";
+import { BsBoxArrowUp, BsTrash } from "react-icons/bs";
 
 const SkillsSection = ({
   onChange,
@@ -118,288 +49,64 @@ const SkillsSection = ({
     onChange(newData);
   };
 
-  const skillIcons: { [key: string]: { icon: JSX.Element; category: string } } =
-    {
-      // Frontend
-      React: {
-        icon: <FaReact className="w-6 h-6 text-[#61DAFB]" />,
-        category: "Frontend",
-      },
-      "Next.js": {
-        icon: <SiNextdotjs className="w-6 h-6 text-black dark:text-white" />,
-        category: "Frontend",
-      },
-      TypeScript: {
-        icon: <SiTypescript className="w-6 h-6 text-[#3178C6]" />,
-        category: "Frontend",
-      },
-      JavaScript: {
-        icon: <SiJavascript className="w-6 h-6 text-[#F7DF1E]" />,
-        category: "Frontend",
-      },
-      "Vue.js": {
-        icon: <FaVuejs className="w-6 h-6 text-[#4FC08D]" />,
-        category: "Frontend",
-      },
-      Angular: {
-        icon: <FaAngular className="w-6 h-6 text-[#DD0031]" />,
-        category: "Frontend",
-      },
-      Redux: {
-        icon: <SiRedux className="w-6 h-6 text-[#764ABC]" />,
-        category: "Frontend",
-      },
-      "React Query": {
-        icon: <SiReactquery className="w-6 h-6 text-[#FF4154]" />,
-        category: "Frontend",
-      },
-      HTML5: {
-        icon: <SiHtml5 className="w-6 h-6 text-[#E34F26]" />,
-        category: "Frontend",
-      },
-      CSS3: {
-        icon: <SiCss3 className="w-6 h-6 text-[#1572B6]" />,
-        category: "Frontend",
-      },
-      Sass: {
-        icon: <FaSass className="w-6 h-6 text-[#CC6699]" />,
-        category: "Frontend",
-      },
-      "Tailwind CSS": {
-        icon: <SiTailwindcss className="w-6 h-6 text-[#06B6D4]" />,
-        category: "Frontend",
-      },
-      Bootstrap: {
-        icon: <FaBootstrap className="w-6 h-6 text-[#7952B3]" />,
-        category: "Frontend",
-      },
-      Storybook: {
-        icon: <SiStorybook className="w-6 h-6 text-[#FF4785]" />,
-        category: "Frontend",
-      },
-      Vite: {
-        icon: <SiVite className="w-6 h-6 text-[#646CFF]" />,
-        category: "Frontend",
-      },
-      Webpack: {
-        icon: <SiWebpack className="w-6 h-6 text-[#8DD6F9]" />,
-        category: "Frontend",
-      },
+  const [isIconSelectorOpen, setIsIconSelectorOpen] = useState(false);
+  const [selectedSkillIndex, setSelectedSkillIndex] = useState<number | null>(
+    null
+  );
 
-      // Backend
-      "Node.js": {
-        icon: <FaNodeJs className="w-6 h-6 text-[#339933]" />,
-        category: "Backend",
-      },
-      Express: {
-        icon: <SiExpress className="w-6 h-6 text-black dark:text-white" />,
-        category: "Backend",
-      },
-      NestJS: {
-        icon: <SiNestjs className="w-6 h-6 text-[#E0234E]" />,
-        category: "Backend",
-      },
-      Python: {
-        icon: <FaPython className="w-6 h-6 text-[#3776AB]" />,
-        category: "Backend",
-      },
-      Django: {
-        icon: <SiDjango className="w-6 h-6 text-[#092E20]" />,
-        category: "Backend",
-      },
-      Flask: {
-        icon: <SiFlask className="w-6 h-6 text-black dark:text-white" />,
-        category: "Backend",
-      },
-      Java: {
-        icon: <FaJava className="w-6 h-6 text-[#007396]" />,
-        category: "Backend",
-      },
-      Spring: {
-        icon: <SiSpring className="w-6 h-6 text-[#6DB33F]" />,
-        category: "Backend",
-      },
-      PHP: {
-        icon: <FaPhp className="w-6 h-6 text-[#777BB4]" />,
-        category: "Backend",
-      },
-      Laravel: {
-        icon: <SiLaravel className="w-6 h-6 text-[#FF2D20]" />,
-        category: "Backend",
-      },
-      GraphQL: {
-        icon: <SiGraphql className="w-6 h-6 text-[#E10098]" />,
-        category: "Backend",
-      },
-      Prisma: {
-        icon: <SiPrisma className="w-6 h-6 text-[#2D3748]" />,
-        category: "Backend",
-      },
-      Sequelize: {
-        icon: <SiSequelize className="w-6 h-6 text-[#52B0E7]" />,
-        category: "Backend",
-      },
+  // SkillIconSelector 컴포넌트 추가
+  const SkillIconSelector = ({
+    isOpen,
+    onClose,
+    onSelect,
+  }: {
+    isOpen: boolean;
+    onClose: () => void;
+    onSelect: (skillName: string) => void;
+  }) => {
+    const categories = ["Frontend", "Backend", "DevOps", "Mobile", "Other"];
 
-      // Database
-      MongoDB: {
-        icon: <SiMongodb className="w-6 h-6 text-[#47A248]" />,
-        category: "Backend",
-      },
-      PostgreSQL: {
-        icon: <SiPostgresql className="w-6 h-6 text-[#336791]" />,
-        category: "Backend",
-      },
-      MySQL: {
-        icon: <SiMysql className="w-6 h-6 text-[#4479A1]" />,
-        category: "Backend",
-      },
-      Redis: {
-        icon: <SiRedis className="w-6 h-6 text-[#DC382D]" />,
-        category: "Backend",
-      },
-      Elasticsearch: {
-        icon: <SiElasticsearch className="w-6 h-6 text-[#005571]" />,
-        category: "Backend",
-      },
+    return (
+      <Dialog open={isOpen} onClose={onClose} className="relative z-50">
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="w-full max-w-3xl bg-white rounded-lg p-6 max-h-[80vh] overflow-y-auto">
+            <Dialog.Title className="text-lg font-bold mb-4">
+              스킬 선택
+            </Dialog.Title>
 
-      // DevOps
-      Docker: {
-        icon: <FaDocker className="w-6 h-6 text-[#2496ED]" />,
-        category: "DevOps",
-      },
-      Kubernetes: {
-        icon: <SiKubernetes className="w-6 h-6 text-[#326CE5]" />,
-        category: "DevOps",
-      },
-      AWS: {
-        icon: <FaAws className="w-6 h-6 text-[#232F3E]" />,
-        category: "DevOps",
-      },
-      EC2: {
-        icon: <SiAmazonec2 className="w-6 h-6 text-[#FF9900]" />,
-        category: "DevOps",
-      },
-      S3: {
-        icon: <SiAmazons3 className="w-6 h-6 text-[#569A31]" />,
-        category: "DevOps",
-      },
-      "Google Cloud": {
-        icon: <SiGooglecloud className="w-6 h-6 text-[#4285F4]" />,
-        category: "DevOps",
-      },
-      Azure: {
-        icon: <SiMicrosoftazure className="w-6 h-6 text-[#0078D4]" />,
-        category: "DevOps",
-      },
-      Jenkins: {
-        icon: <SiJenkins className="w-6 h-6 text-[#D24939]" />,
-        category: "DevOps",
-      },
-      Linux: {
-        icon: <FaLinux className="w-6 h-6 text-black dark:text-white" />,
-        category: "DevOps",
-      },
-      Nginx: {
-        icon: <SiNginx className="w-6 h-6 text-[#009639]" />,
-        category: "DevOps",
-      },
-      Apache: {
-        icon: <SiApache className="w-6 h-6 text-[#D22128]" />,
-        category: "DevOps",
-      },
-      Vercel: {
-        icon: <SiVercel className="w-6 h-6 text-black dark:text-white" />,
-        category: "DevOps",
-      },
-      Netlify: {
-        icon: <SiNetlify className="w-6 h-6 text-[#00C7B7]" />,
-        category: "DevOps",
-      },
-      Heroku: {
-        icon: <SiHeroku className="w-6 h-6 text-[#430098]" />,
-        category: "DevOps",
-      },
-
-      // Mobile
-      "React Native": {
-        icon: <FaReact className="w-6 h-6 text-[#61DAFB]" />,
-        category: "Mobile",
-      },
-      Swift: {
-        icon: <SiSwift className="w-6 h-6 text-[#FA7343]" />,
-        category: "Mobile",
-      },
-      Kotlin: {
-        icon: <SiKotlin className="w-6 h-6 text-[#7F52FF]" />,
-        category: "Mobile",
-      },
-      Flutter: {
-        icon: <SiFlutter className="w-6 h-6 text-[#02569B]" />,
-        category: "Mobile",
-      },
-
-      // Tools & Others
-      Git: {
-        icon: <SiGit className="w-6 h-6 text-[#F05032]" />,
-        category: "Other",
-      },
-      GitHub: {
-        icon: <FaGithub className="w-6 h-6 text-black dark:text-white" />,
-        category: "Other",
-      },
-      GitLab: {
-        icon: <FaGitlab className="w-6 h-6 text-[#FCA121]" />,
-        category: "Other",
-      },
-      npm: {
-        icon: <FaNpm className="w-6 h-6 text-[#CB3837]" />,
-        category: "Other",
-      },
-      Yarn: {
-        icon: <FaYarn className="w-6 h-6 text-[#2C8EBB]" />,
-        category: "Other",
-      },
-      Jest: {
-        icon: <SiJest className="w-6 h-6 text-[#C21325]" />,
-        category: "Other",
-      },
-      Cypress: {
-        icon: <SiCypress className="w-6 h-6 text-[#17202C]" />,
-        category: "Other",
-      },
-      Postman: {
-        icon: <SiPostman className="w-6 h-6 text-[#FF6C37]" />,
-        category: "Other",
-      },
-      Swagger: {
-        icon: <SiSwagger className="w-6 h-6 text-[#85EA2D]" />,
-        category: "Other",
-      },
-      "VS Code": {
-        icon: <SiVisualstudiocode className="w-6 h-6 text-[#007ACC]" />,
-        category: "Other",
-      },
-      WebStorm: {
-        icon: <SiWebstorm className="w-6 h-6 text-[#00D8FF]" />,
-        category: "Other",
-      },
-      IntelliJ: {
-        icon: <SiIntellijidea className="w-6 h-6 text-[#000000]" />,
-        category: "Other",
-      },
-      Eclipse: {
-        icon: <SiEclipseide className="w-6 h-6 text-[#2C2255]" />,
-        category: "Other",
-      },
-      Figma: {
-        icon: <FaFigma className="w-6 h-6 text-[#F24E1E]" />,
-        category: "Other",
-      },
-      Jira: {
-        icon: <FaJira className="w-6 h-6 text-[#0052CC]" />,
-        category: "Other",
-      },
-    };
+            {categories.map((category, index) => (
+              <div key={category}>
+                <div className="mb-6">
+                  <h3 className="font-medium text-lg mb-3">{category}</h3>
+                  <div className="grid grid-cols-4 sm:grid-cols-6 gap-4">
+                    {Object.entries(skillIcons)
+                      .filter(([_, value]) => value.category === category)
+                      .map(([skillName, { icon }]) => (
+                        <button
+                          key={skillName}
+                          onClick={() => {
+                            onSelect(skillName);
+                            onClose();
+                          }}
+                          className="flex flex-col items-center p-2 hover:bg-gray-100 rounded transition"
+                        >
+                          {icon}
+                          <span className="text-sm mt-1">{skillName}</span>
+                        </button>
+                      ))}
+                  </div>
+                </div>
+                {index < categories.length - 1 && (
+                  <div className="border-b border-gray-200 my-4" />
+                )}
+              </div>
+            ))}
+          </Dialog.Panel>
+        </div>
+      </Dialog>
+    );
+  };
 
   return (
     <div className="space-y-4">
@@ -415,44 +122,50 @@ const SkillsSection = ({
                   <div className="w-6 h-6 bg-gray-200 rounded-full" />
                 )}
               </div>
-              <input
-                type="text"
-                placeholder="스킬 이름"
-                className="flex-1 p-2 border rounded"
-                value={skill.name}
-                onChange={(e) => {
-                  const newSkills = [...skillsData.skills];
-                  newSkills[index].name = e.target.value;
-                  if (skillIcons[e.target.value]) {
-                    newSkills[index].category =
-                      skillIcons[e.target.value].category;
-                  }
-                  handleChange("skills", newSkills);
-                }}
-                list="skill-suggestions"
-                required
-              />
-              <datalist id="skill-suggestions">
-                {Object.keys(skillIcons).map((skillName) => (
-                  <option key={skillName} value={skillName} />
-                ))}
-              </datalist>
-              <input
-                type="range"
-                min="1"
-                max="5"
-                value={skill.level}
-                onChange={(e) => {
-                  const newSkills = [...skillsData.skills];
-                  newSkills[index].level = Number(e.target.value);
-                  handleChange("skills", newSkills);
-                }}
-              />
+              <div className="flex-1 flex items-center gap-2">
+                <input
+                  type="text"
+                  placeholder="스킬 이름"
+                  className="flex-1 p-2 border rounded"
+                  value={skill.name}
+                  onChange={(e) => {
+                    const newSkills = [...skillsData.skills];
+                    newSkills[index].name = e.target.value;
+                    handleChange("skills", newSkills);
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    setSelectedSkillIndex(index);
+                    setIsIconSelectorOpen(true);
+                  }}
+                  className="p-2 text-gray-500 hover:text-gray-600 transition rounded-full hover:bg-gray-50"
+                  title="아이콘 선택"
+                >
+                  <BsBoxArrowUp className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm w-8">{skill.level}/5</span>
+                <input
+                  type="range"
+                  min="1"
+                  max="5"
+                  value={skill.level}
+                  onChange={(e) => {
+                    const newSkills = [...skillsData.skills];
+                    newSkills[index].level = Number(e.target.value);
+                    handleChange("skills", newSkills);
+                  }}
+                  className="w-24"
+                />
+              </div>
               <button
                 onClick={() => removeSkill(index)}
-                className="px-3 py-1 bg-red-500 text-white rounded"
+                className="p-2 text-red-500 hover:text-red-600 transition rounded-full hover:bg-red-50"
+                title="삭제"
               >
-                삭제
+                <BsTrash className="w-5 h-5" />
               </button>
             </div>
           ))}
@@ -464,6 +177,19 @@ const SkillsSection = ({
           </button>
         </div>
       </div>
+      <SkillIconSelector
+        isOpen={isIconSelectorOpen}
+        onClose={() => setIsIconSelectorOpen(false)}
+        onSelect={(skillName) => {
+          if (selectedSkillIndex !== null) {
+            const newSkills = [...skillsData.skills];
+            newSkills[selectedSkillIndex].name = skillName;
+            newSkills[selectedSkillIndex].category =
+              skillIcons[skillName].category;
+            handleChange("skills", newSkills);
+          }
+        }}
+      />
     </div>
   );
 };

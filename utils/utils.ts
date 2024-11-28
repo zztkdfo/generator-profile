@@ -27,24 +27,13 @@ export const convertIntroductionToMarkdown = (
 
 ${emails}
 
-${
-  data.description
-    ? `${data.description
-        .split("\n")
-        .map((line) => `${line}  `)
-        .join("\n")} 🍀 ✨`
-    : ""
-}
-${
-  data.philosophy
-    ? `${data.philosophy
-        .split("\n")
-        .map((line) => `${line}  `)
-        .join("\n")}`
-    : ""
-}
-
-<img align='right' src='https://github.githubassets.com/images/mona-whisper.gif'  width='200'> \n`;
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+  <div style="white-space: pre-line;">
+    ${data.description ? `${data.description} 🍀 ✨` : ""}
+    ${data.philosophy ? `\n${data.philosophy}` : ""}
+  </div>
+  <img src='https://github.githubassets.com/images/mona-whisper.gif' width='200'>
+</div>\n`;
 };
 
 export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {
