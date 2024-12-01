@@ -1,5 +1,5 @@
 import { IntroductionDataType, SkillsDataType } from "@/types/types";
-
+import { techColors } from "@/components/sections/data/techColors";
 export const convertIntroductionToMarkdown = (
   data: IntroductionDataType
 ): string => {
@@ -37,7 +37,11 @@ ${emails}
 };
 
 export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {
-  let markdown = "## 보유 기술\n\n";
+  if (!skillsData?.skills || skillsData.skills.length === 0) {
+    return "";
+  }
+
+  let markdown = "## 기술 스택\n\n";
 
   const skillsByCategory: { [key: string]: typeof skillsData.skills } = {};
 
@@ -50,10 +54,25 @@ export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {
 
   Object.entries(skillsByCategory).forEach(([category, skills]) => {
     markdown += `### ${category}\n`;
+    markdown += `<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">\n`;
     skills.forEach((skill) => {
-      markdown += `- ${skill.name} (${"★".repeat(skill.level)})\n`;
+      if (skill.name) {
+        const color = techColors[skill.name] || "232F3E";
+        const logoName = skill.name
+          .toLowerCase()
+          .replace(/\s+/g, "")
+          .replace(/\./g, "")
+          .replace("react native", "react");
+
+        markdown += `<img src="https://img.shields.io/badge/${skill.name
+          .replace("-", "--")
+          .replace(
+            " ",
+            "%20"
+          )}-${color}?style=for-the-badge&logo=${logoName}&logoColor=white" height="42"/>\n`;
+      }
     });
-    markdown += "\n";
+    markdown += `</div>\n\n`;
   });
 
   return markdown;
