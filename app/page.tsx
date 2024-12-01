@@ -208,17 +208,30 @@ export default function Home() {
                       const cleanAlt =
                         alt?.replace(/=\d+x\d+/, "").trim() || "";
 
+                      // shields.io 배지인지 확인
+                      const isShieldsBadge = src?.includes("img.shields.io");
+
                       return (
                         <Image
                           src={src || ""}
                           alt={cleanAlt}
                           width={parseInt(props.width as string) || 100}
-                          height={parseInt(props.height as string) || 100}
+                          height={
+                            parseInt(props.height as string) ||
+                            (isShieldsBadge ? 30 : 100)
+                          }
                           style={{
-                            display: "inline",
+                            display: isShieldsBadge ? "inline-block" : "inline",
                             verticalAlign: "middle",
                             maxWidth: "100%",
-                            height: "auto",
+                            ...(isShieldsBadge
+                              ? {
+                                  height: "30px",
+                                  maxHeight: "30px",
+                                }
+                              : {
+                                  height: "auto",
+                                }),
                           }}
                           unoptimized
                         />

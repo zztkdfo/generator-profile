@@ -64,12 +64,18 @@ export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {
           .replace(/\./g, "")
           .replace("react native", "react");
 
-        markdown += `<img src="https://img.shields.io/badge/${skill.name
+        const imageUrl = `https://img.shields.io/badge/${skill.name
           .replace("-", "--")
           .replace(
             " ",
             "%20"
-          )}-${color}?style=for-the-badge&logo=${logoName}&logoColor=white" height="42"/>\n`;
+          )}-${color}?style=for-the-badge&logo=${logoName}&logoColor=white`;
+
+        const styleAttr = imageUrl.includes("img.shields.io")
+          ? ` style="height: 30px !important; max-height: 30px !important; display: inline-block !important;"`
+          : "";
+
+        markdown += `<img src="${imageUrl}" height="30"${styleAttr}/>\n`;
       }
     });
     markdown += `</div>\n\n`;
