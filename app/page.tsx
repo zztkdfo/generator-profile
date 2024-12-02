@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
+import Content from "@/components/Content/Content";
 
 import { useCallback, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -68,60 +69,61 @@ export default function Home() {
     setActiveMenu(menu);
   }, []);
 
-  const handleIntroductionChange = (introData: IntroductionDataType) => {
-    setProfileData((prev) => ({
-      ...prev,
-      introduction: introData,
-    }));
+  // 전체 마크다운 업데이트 함수
+  const updateMarkdownPreview = useCallback(
+    (markdowns: typeof sectionMarkdowns) => {
+      const combinedMarkdown = [markdowns.introduction, markdowns.skills]
+        .filter(Boolean)
+        .join("\n\n");
 
-    // 마크다운 변환 및 미리보기 업데이트
-    const markdown = convertIntroductionToMarkdown(introData);
-    setSectionMarkdowns((prev) => ({
-      ...prev,
-      introduction: markdown,
-    }));
+      setMarkdownPreview(combinedMarkdown);
+    },
+    []
+  );
 
-    // 전체 마크다운 업데이트
-    updateMarkdownPreview({
-      ...sectionMarkdowns,
-      introduction: markdown,
-    });
-  };
+  const handleIntroductionChange = useCallback(
+    (introData: IntroductionDataType) => {
+      setProfileData((prev) => ({
+        ...prev,
+        introduction: introData,
+      }));
+
+      const markdown = convertIntroductionToMarkdown(introData);
+      setSectionMarkdowns((prev) => ({
+        ...prev,
+        introduction: markdown,
+      }));
+
+      updateMarkdownPreview({
+        ...sectionMarkdowns,
+        introduction: markdown,
+      });
+    },
+    [sectionMarkdowns, updateMarkdownPreview]
+  );
 
   // handleSkillsChange 함수 추가
-  const handleSkillsChange = (skillsData: SkillsDataType) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    setProfileData((prev: any) => ({
-      ...prev,
-      skills: skillsData,
-    }));
+  const handleSkillsChange = useCallback(
+    (skillsData: SkillsDataType) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setProfileData((prev: any) => ({
+        ...prev,
+        skills: skillsData,
+      }));
 
-    const markdown = convertSkillsToMarkdown(skillsData);
-    setSectionMarkdowns((prev) => ({
-      ...prev,
-      skills: markdown,
-    }));
+      const markdown = convertSkillsToMarkdown(skillsData);
+      setSectionMarkdowns((prev) => ({
+        ...prev,
+        skills: markdown,
+      }));
 
-    // 전체 마크다운 업데이트
-    updateMarkdownPreview({
-      ...sectionMarkdowns,
-      skills: markdown,
-    });
-  };
-  // 전체 마크다운 업데이트 함수
-  const updateMarkdownPreview = (markdowns: typeof sectionMarkdowns) => {
-    // 모든 섹션의 마크다운을 순서대로 결합
-    const combinedMarkdown = [
-      markdowns.introduction,
-      markdowns.skills,
-      // 다른 섹션들의 마크다운도 순서대로 추가
-    ]
-      .filter(Boolean)
-      .join("\n\n");
-
-    setMarkdownPreview(combinedMarkdown);
-  };
-
+      updateMarkdownPreview({
+        ...sectionMarkdowns,
+        skills: markdown,
+      });
+    },
+    [sectionMarkdowns, updateMarkdownPreview]
+  );
   // 마크다운 복사 함수
   const handleCopyMarkdown = useCallback(() => {
     // navigator.clipboard
@@ -170,7 +172,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* 왼쪽 메뉴 패널 */}
+      {/* 메뉴 영역 */}
       <Sidebar
         menuItems={menuItems}
         activeMenu={activeMenu}
@@ -178,7 +180,7 @@ export default function Home() {
         handleActiveMenuChange={handleActiveMenuChange}
       />
 
-      {/* 오른쪽 콘텐츠 영역 - overflow-hidden 추가 */}
+      {/* 콘텐츠 영역 */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header
           menuItems={menuItems}
@@ -186,80 +188,10 @@ export default function Home() {
           handleCopyMarkdown={handleCopyMarkdown}
         />
 
-        {/* 콘텐츠 영역 - overflow-auto 추가 */}
-        <div className="flex-1 p-7 overflow-auto">
-          <div className="h-full">
-            <div className="flex gap-6">
-              {/* 왼쪽 영역 */}
-              <div className="w-[600px] min-w-[600px] bg-white rounded-lg shadow p-4">
-                {renderActiveSection}
-              </div>
-
-              {/* 오른쪽 영역 */}
-              <div className="flex-1 bg-white rounded-lg shadow p-4 overflow-hidden">
-                {/* overflow-hidden 추가 */}
-                <ReactMarkdown
-                  rehypePlugins={[rehypeRaw]}
-                  components={{
-                    img: ({ src, alt, ...props }) => {
-                      console.log(src, alt, props);
-
-                      // 실제 alt 텍스트에서 크기 정보 제거
-                      const cleanAlt =
-                        alt?.replace(/=\d+x\d+/, "").trim() || "";
-
-                      // shields.io 배지인지 확인
-                      const isShieldsBadge = src?.includes("img.shields.io");
-
-                      return (
-                        <Image
-                          src={src || ""}
-                          alt={cleanAlt}
-                          width={parseInt(props.width as string) || 100}
-                          height={
-                            parseInt(props.height as string) ||
-                            (isShieldsBadge ? 30 : 100)
-                          }
-                          style={{
-                            display: isShieldsBadge ? "inline-block" : "inline",
-                            verticalAlign: "middle",
-                            maxWidth: "100%",
-                            ...(isShieldsBadge
-                              ? {
-                                  height: "30px",
-                                  maxHeight: "30px",
-                                }
-                              : {
-                                  height: "auto",
-                                }),
-                          }}
-                          unoptimized
-                        />
-                      );
-                    },
-                    hr: () => <hr className="my-8 border-t border-gray-300" />,
-                    h1: ({ ...props }) => (
-                      <h1 className="text-2xl font-bold mb-4" {...props} />
-                    ),
-                    p: ({ ...props }) => <p className="mb-4" {...props} />,
-
-                    h2: ({ ...props }) => (
-                      <h2 className="text-xl font-bold mb-3" {...props} />
-                    ),
-                    ul: ({ ...props }) => (
-                      <ul className="list-disc pl-5 mb-4" {...props} />
-                    ),
-                    li: ({ ...props }) => <li className="mb-2" {...props} />,
-                  }}
-                  className="prose prose-slate max-w-none break-words prose-img:my-0" // prose-img:my-0 추가
-                >
-                  {/* break-words 추가 */}
-                  {markdownPreview}
-                </ReactMarkdown>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Content
+          renderActiveSection={renderActiveSection}
+          markdownPreview={markdownPreview}
+        />
       </div>
     </div>
   );

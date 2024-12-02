@@ -81,6 +81,7 @@ const SkillsSection = ({
                   <h3 className="font-medium text-lg mb-3">{category}</h3>
                   <div className="grid grid-cols-4 sm:grid-cols-6 gap-4">
                     {Object.entries(skillIcons)
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
                       .filter(([_, value]) => value.category === category)
                       .map(([skillName, { icon }]) => (
                         <button
