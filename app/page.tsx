@@ -1,17 +1,14 @@
 "use client";
-import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
 import Content from "@/components/Content/Content";
 
 import { useCallback, useMemo, useState } from "react";
-import ReactMarkdown from "react-markdown";
 import { IntroductionDataType, SkillsDataType } from "@/types/types";
 import {
   convertIntroductionToMarkdown,
   convertSkillsToMarkdown,
 } from "@/utils/utils";
-import rehypeRaw from "rehype-raw";
 
 import IntroSection from "@/components/sections/IntroSection";
 import SkillsSection from "@/components/sections/SkillsSection";
