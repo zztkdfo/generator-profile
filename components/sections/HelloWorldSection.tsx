@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { BsTrash } from "react-icons/bs";
 import Button from "@/components/common/button/Button"; // Button 컴포넌트 import 추가
 
@@ -17,16 +17,20 @@ const HelloWordSection = ({
     useState<HelloWordDataType>(initialData);
 
   // 플레이스홀더 목록 정의
-  const placeholders = [
-    "예: 💬 무엇이든 편하게 물어보세요.",
-    "예: 🎨 창의적인 아이디어를 공유하세요.",
-    "예: 📚 최근 읽은 책에 대해 이야기해보세요.",
-    "예:⚡ 개발에 몰입하면 시간 가는 줄 모릅니다!",
-    "예:📝 학습 경험을 꾸준히 기록하며, 기술 팁과 프로젝트 경험을 나눕니다.",
-    "예:🔍 기술과 데이터 분석을 활용해 문제를 이해하고, 효율적인 솔루션을 설계합니다.",
-    "예:🚀 꾸준히 진행 중인 프로젝트를 통해 학습한 기술을 실전에 적용하고 있습니다.",
-    "예:🌱 매일 조금씩 배우고 실험하며, 꾸준한 노력으로 성장해 나가고 있습니다.",
-  ];
+  const placeholders = useMemo(
+    () => [
+      "예: 💬 무엇이든 편하게 물어보세요.",
+      "예: 🎨 창의적인 아이디어를 공유하세요.",
+      "예: 📚 최근 읽은 책에 대해 이야기해보세요.",
+      "예:⚡ 개발에 몰입하면 시간 가는 줄 모릅니다!",
+      "예:📝 학습 경험을 꾸준히 기록하며, 기술 팁과 프로젝트 경험을 나눕니다.",
+      "예:🔍 기술과 데이터 분석을 활용해 문제를 이해하고, 효율적인 솔루션을 설계합니다.",
+      "예:🚀 꾸준히 진행 중인 프로젝트를 통해 학습한 기술을 실전에 적용하고 있습니다.",
+      "예:🌱 매일 조금씩 배우고 실험하며, 꾸준한 노력으로 성장해 나가고 있습니다.",
+    ],
+    []
+  );
+
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
 
   const handleChange = useCallback(
