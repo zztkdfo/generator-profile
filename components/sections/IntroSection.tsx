@@ -32,7 +32,7 @@ const IntroSection = ({
       <div className="space-y-2">
         <input
           type="text"
-          placeholder="대제목 (예: Frontend Developer who loves React)"
+          placeholder="제목 (예: 반갑습니다, FE 개발자 zztkdfo 입니다.)"
           className="w-full text-lg p-2 border rounded"
           value={introData.mainTitle}
           onChange={(e) => handleChange("mainTitle", e.target.value)}
@@ -47,7 +47,7 @@ const IntroSection = ({
         />
 
         <textarea
-          placeholder="상세 소개글"
+          placeholder={`본인의 가치관, 개발 철학 등을 작성해주세요.\n(이모지를 사용해서 더 멋지게 꾸며보세요😎🚀🤗😁)`}
           className="w-full p-2 text-lg border rounded"
           rows={12}
           value={introData.description}

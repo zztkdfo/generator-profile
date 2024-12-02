@@ -18,3 +18,11 @@ export interface SkillsDataType {
     category: string;
   }[];
 }
+
+export interface HelloWordDataType {
+  words: {
+    id: string;
+    text: string;
+    placeholder?: string;
+  }[];
+}

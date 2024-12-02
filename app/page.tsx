@@ -4,14 +4,20 @@ import Sidebar from "@/components/layout/Sidebar";
 import Content from "@/components/Content/Content";
 
 import { useCallback, useMemo, useState } from "react";
-import { IntroductionDataType, SkillsDataType } from "@/types/types";
 import {
+  HelloWordDataType,
+  IntroductionDataType,
+  SkillsDataType,
+} from "@/types/types";
+import {
+  convertHelloWorldToMarkdown,
   convertIntroductionToMarkdown,
   convertSkillsToMarkdown,
 } from "@/utils/utils";
 
 import IntroSection from "@/components/sections/IntroSection";
 import SkillsSection from "@/components/sections/SkillsSection";
+import HelloWorldSection from "@/components/sections/HelloWorldSection";
 
 export interface MenuItem {
   id: string;
@@ -28,6 +34,9 @@ export default function Home() {
       philosophy: "",
       description: "",
     },
+    helloWorld: {
+      words: [],
+    },
     skills: {
       skills: [],
     },
@@ -38,7 +47,7 @@ export default function Home() {
   const [sectionMarkdowns, setSectionMarkdowns] = useState({
     introduction: "",
     skills: "",
-    // 다른 섹션들도 필요에 따라 추가
+    helloWorld: "",
   });
 
   // 마크다운 문자열을 저장할 state
@@ -48,12 +57,13 @@ export default function Home() {
   const [activeMenu, setActiveMenu] = useState<string | null>("1");
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
     { id: "1", title: "소개" },
-    { id: "2", title: "보유 기술" },
-    { id: "3", title: "연락하기" },
-    { id: "4", title: "깃허브 통계" },
-    { id: "5", title: "최근 블로그 포스트" },
-    { id: "6", title: "스포티파이 듣기" },
-    { id: "7", title: "방문자 수" },
+    { id: "2", title: "Hello World!" },
+    { id: "3", title: "보유 기술" },
+    { id: "4", title: "연락하기" },
+    { id: "5", title: "깃허브 통계" },
+    { id: "6", title: "최근 블로그 포스트" },
+    { id: "7", title: "스포티파이 듣기" },
+    { id: "8", title: "방문자 수" },
   ]);
 
   // 메뉴 아이템 변경 함수
@@ -69,7 +79,11 @@ export default function Home() {
   // 전체 마크다운 업데이트 함수
   const updateMarkdownPreview = useCallback(
     (markdowns: typeof sectionMarkdowns) => {
-      const combinedMarkdown = [markdowns.introduction, markdowns.skills]
+      const combinedMarkdown = [
+        markdowns.introduction,
+        markdowns.helloWorld,
+        markdowns.skills,
+      ]
         .filter(Boolean)
         .join("\n\n");
 
@@ -78,6 +92,7 @@ export default function Home() {
     []
   );
 
+  // 인트로 섹션 변경 함수
   const handleIntroductionChange = useCallback(
     (introData: IntroductionDataType) => {
       setProfileData((prev) => ({
@@ -99,7 +114,7 @@ export default function Home() {
     [sectionMarkdowns, updateMarkdownPreview]
   );
 
-  // handleSkillsChange 함수 추가
+  // 스킬 섹션 변경 함수
   const handleSkillsChange = useCallback(
     (skillsData: SkillsDataType) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -121,6 +136,30 @@ export default function Home() {
     },
     [sectionMarkdowns, updateMarkdownPreview]
   );
+
+  // Hello World 섹션 변경 함수
+  const handleHelloWorldChange = useCallback(
+    (data: HelloWordDataType) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setProfileData((prev: any) => ({
+        ...prev,
+        helloWorld: data,
+      }));
+
+      const markdown = convertHelloWorldToMarkdown(data);
+      setSectionMarkdowns((prev) => ({
+        ...prev,
+        helloWorld: markdown,
+      }));
+
+      updateMarkdownPreview({
+        ...sectionMarkdowns,
+        helloWorld: markdown,
+      });
+    },
+    [sectionMarkdowns, updateMarkdownPreview]
+  );
+
   // 마크다운 복사 함수
   const handleCopyMarkdown = useCallback(() => {
     // navigator.clipboard
@@ -141,6 +180,13 @@ export default function Home() {
           />
         );
       case "2":
+        return (
+          <HelloWorldSection
+            initialData={profileData.helloWorld}
+            onChange={handleHelloWorldChange}
+          />
+        );
+      case "3":
         return (
           <SkillsSection
             onChange={handleSkillsChange}
@@ -165,7 +211,13 @@ export default function Home() {
           />
         );
     }
-  }, [activeMenu, profileData, handleIntroductionChange, handleSkillsChange]);
+  }, [
+    activeMenu,
+    profileData,
+    handleIntroductionChange,
+    handleSkillsChange,
+    handleHelloWorldChange,
+  ]);
 
   return (
     <div className="flex min-h-screen bg-gray-100">
