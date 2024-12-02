@@ -59,11 +59,11 @@ export default function Home() {
     { id: "1", title: "소개" },
     { id: "2", title: "Hello World!" },
     { id: "3", title: "보유 기술" },
-    { id: "4", title: "연락하기" },
-    { id: "5", title: "깃허브 통계" },
-    { id: "6", title: "최근 블로그 포스트" },
-    { id: "7", title: "스포티파이 듣기" },
-    { id: "8", title: "방문자 수" },
+    // { id: "4", title: "연락하기" },
+    // { id: "5", title: "깃허브 통계" },
+    // { id: "6", title: "최근 블로그 포스트" },
+    // { id: "7", title: "스포티파이 듣기" },
+    // { id: "8", title: "방문자 수" },
   ]);
 
   // 메뉴 아이템 변경 함수
