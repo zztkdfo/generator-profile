@@ -14,6 +14,7 @@ const ArticlesSection = ({
   initialData: ArticlesDataType;
 }) => {
   const [articles, setArticles] = useState(initialData.articles);
+  const [mainBlogUrl, setMainBlogUrl] = useState(initialData.mainBlog || "");
 
   const handleArticleChange = useCallback(
     (index: number, field: "title" | "url", value: string) => {
@@ -24,9 +25,9 @@ const ArticlesSection = ({
       };
 
       setArticles(updatedArticles);
-      onChange({ articles: updatedArticles });
+      onChange({ articles: updatedArticles, mainBlog: mainBlogUrl });
     },
-    [articles, onChange]
+    [articles, mainBlogUrl, onChange]
   );
 
   const addArticle = useCallback(() => {
@@ -38,8 +39,8 @@ const ArticlesSection = ({
 
     const updatedArticles = [...articles, newArticle];
     setArticles(updatedArticles);
-    onChange({ articles: updatedArticles });
-  }, [articles, onChange]);
+    onChange({ articles: updatedArticles, mainBlog: mainBlogUrl });
+  }, [articles, mainBlogUrl, onChange]);
 
   const removeArticle = useCallback(
     (index: number) => {
@@ -52,7 +53,19 @@ const ArticlesSection = ({
 
       const updatedArticles = articles.filter((_, i) => i !== index);
       setArticles(updatedArticles);
-      onChange({ articles: updatedArticles });
+      onChange({ articles: updatedArticles, mainBlog: mainBlogUrl });
+    },
+    [articles, mainBlogUrl, onChange]
+  );
+
+  const handleMainBlogChange = useCallback(
+    (url: string) => {
+      const updatedData = {
+        articles,
+        mainBlog: url,
+      };
+      setMainBlogUrl(url);
+      onChange(updatedData);
     },
     [articles, onChange]
   );
@@ -61,9 +74,23 @@ const ArticlesSection = ({
     <div className="space-y-4">
       <h2 className="text-xl font-bold">게시글 섹션</h2>
       <div className="space-y-4">
-        <p className="text-sm text-gray-600">
-          현재 본인이 작성하고 있는 기술블로그, 뉴스, 포스트 등을 작성해주세요.
-        </p>
+        <div className="mb-4">
+          <p className="text-sm mb-2 text-gray-600">
+            현재 본인이 작성하고 있는 기술블로그, 뉴스, 포스트 등을
+            작성해주세요.
+          </p>
+
+          <p className="text-sm text-gray-600 mb-2">
+            대표 블로그 URL을 입력해주세요.
+          </p>
+          <input
+            type="url"
+            placeholder="대표 블로그 URL"
+            className="w-full p-2 border rounded"
+            value={mainBlogUrl}
+            onChange={(e) => handleMainBlogChange(e.target.value)}
+          />
+        </div>
 
         {articles.map((article, index) => (
           <div key={article.id} className="flex items-center gap-2 mb-2">

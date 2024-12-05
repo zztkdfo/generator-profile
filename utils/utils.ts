@@ -115,21 +115,23 @@ export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {
 export const convertArticlesToMarkdown = (
   articlesData: ArticlesDataType
 ): string => {
-  console.log("articlesData", articlesData);
   if (!articlesData?.articles || articlesData.articles.length === 0) {
     return "";
   }
 
   const userContent = articlesData.articles
-    .map((article) => `• [${article.title}](${article.url})`)
+    .map((article) => {
+      const title = article.title.trim();
+      const url = article.url.trim();
+      return `- [${title}](${url})`;
+    })
     .join("\n");
 
-  return `## 최근 게시글 ✏️
+  return `## Blogs
 
-<div style="display: flex; align-items: flex-start; justify-content: space-between;">
-  <div style="white-space: pre-line;">
-    ${userContent}
-  </div>
-</div>
-`;
+<!-- BLOG-POST-LIST:START -->
+${userContent}
+<!-- BLOG-POST-LIST:END -->
+
+➡️ [more articles...](https://disquiet.io/@zztkdfo/articles)`;
 };

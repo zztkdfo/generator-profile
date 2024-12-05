@@ -44,6 +44,7 @@ export default function Home() {
       skills: [],
     },
     articles: {
+      mainBlog: "",
       articles: [],
     },
     // 다른 섹션들도 필요에 따라 추가

@@ -28,6 +28,7 @@ export interface HelloWordDataType {
 }
 
 export interface ArticlesDataType {
+  mainBlog: string;
   articles: {
     id: string;
     title: string;
