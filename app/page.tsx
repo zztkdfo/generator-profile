@@ -8,16 +8,19 @@ import {
   HelloWordDataType,
   IntroductionDataType,
   SkillsDataType,
+  ArticlesDataType,
 } from "@/types/types";
 import {
   convertHelloWorldToMarkdown,
   convertIntroductionToMarkdown,
   convertSkillsToMarkdown,
+  convertArticlesToMarkdown,
 } from "@/utils/utils";
 
 import IntroSection from "@/components/sections/IntroSection";
 import SkillsSection from "@/components/sections/SkillsSection";
 import HelloWorldSection from "@/components/sections/HelloWorldSection";
+import ArticlesSection from "@/components/sections/Articles";
 
 export interface MenuItem {
   id: string;
@@ -40,6 +43,9 @@ export default function Home() {
     skills: {
       skills: [],
     },
+    articles: {
+      articles: [],
+    },
     // 다른 섹션들도 필요에 따라 추가
   });
 
@@ -48,6 +54,7 @@ export default function Home() {
     introduction: "",
     skills: "",
     helloWorld: "",
+    articles: "",
   });
 
   // 마크다운 문자열을 저장할 state
@@ -56,10 +63,10 @@ export default function Home() {
 
   const [activeMenu, setActiveMenu] = useState<string | null>("1");
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
-    { id: "1", title: "소개" },
+    { id: "1", title: "Introduction" },
     { id: "2", title: "Hello World!" },
-    { id: "3", title: "보유 기술" },
-    // { id: "4", title: "연락하기" },
+    { id: "3", title: "Skills" },
+    { id: "4", title: "Latest articles" },
     // { id: "5", title: "깃허브 통계" },
     // { id: "6", title: "최근 블로그 포스트" },
     // { id: "7", title: "스포티파이 듣기" },
@@ -83,6 +90,7 @@ export default function Home() {
         markdowns.introduction,
         markdowns.helloWorld,
         markdowns.skills,
+        markdowns.articles,
       ]
         .filter(Boolean)
         .join("\n\n");
@@ -132,6 +140,28 @@ export default function Home() {
       updateMarkdownPreview({
         ...sectionMarkdowns,
         skills: markdown,
+      });
+    },
+    [sectionMarkdowns, updateMarkdownPreview]
+  );
+
+  const handleArticlesChange = useCallback(
+    (articlesData: ArticlesDataType) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setProfileData((prev: any) => ({
+        ...prev,
+        articles: articlesData,
+      }));
+
+      const markdown = convertArticlesToMarkdown(articlesData);
+      setSectionMarkdowns((prev) => ({
+        ...prev,
+        articles: markdown,
+      }));
+
+      updateMarkdownPreview({
+        ...sectionMarkdowns,
+        articles: markdown,
       });
     },
     [sectionMarkdowns, updateMarkdownPreview]
@@ -193,10 +223,13 @@ export default function Home() {
             initialData={profileData.skills}
           />
         );
-        // case "3":
-        //   return <ContactSection />;
-        // case "4":
-        //   return <GithubStatsSection />;
+      case "4":
+        return (
+          <ArticlesSection
+            onChange={handleArticlesChange}
+            initialData={profileData.articles}
+          />
+        );
         // case "5":
         //   return <BlogPostsSection />;
         // case "6":
@@ -217,6 +250,7 @@ export default function Home() {
     handleIntroductionChange,
     handleSkillsChange,
     handleHelloWorldChange,
+    handleArticlesChange,
   ]);
 
   return (

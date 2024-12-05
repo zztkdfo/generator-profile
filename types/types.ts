@@ -26,3 +26,11 @@ export interface HelloWordDataType {
     placeholder?: string;
   }[];
 }
+
+export interface ArticlesDataType {
+  articles: {
+    id: string;
+    title: string;
+    url: string;
+  }[];
+}

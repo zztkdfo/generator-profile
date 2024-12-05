@@ -2,6 +2,7 @@ import {
   HelloWordDataType,
   IntroductionDataType,
   SkillsDataType,
+  ArticlesDataType,
 } from "@/types/types";
 import { techColors } from "@/components/sections/data/techColors";
 export const convertIntroductionToMarkdown = (
@@ -109,4 +110,26 @@ export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {
   });
 
   return markdown;
+};
+
+export const convertArticlesToMarkdown = (
+  articlesData: ArticlesDataType
+): string => {
+  console.log("articlesData", articlesData);
+  if (!articlesData?.articles || articlesData.articles.length === 0) {
+    return "";
+  }
+
+  const userContent = articlesData.articles
+    .map((article) => `• [${article.title}](${article.url})`)
+    .join("\n");
+
+  return `## 최근 게시글 ✏️
+
+<div style="display: flex; align-items: flex-start; justify-content: space-between;">
+  <div style="white-space: pre-line;">
+    ${userContent}
+  </div>
+</div>
+`;
 };

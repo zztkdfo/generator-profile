@@ -83,9 +83,13 @@ const HelloWordSection = ({
 
       <div className="space-y-4">
         <div>
-          <h3 className="font-medium mb-2">
+          <p className="text-sm text-gray-600">
             자신의 이력서, 관심, 취미, 운동, 좋아하는 것 등을 작성해주세요.
-          </h3>
+          </p>
+          <p className="text-sm py-1 mb-2 text-gray-600">
+            이모지를 사용하여 더욱 풍성하고 멋지게 꾸며보세요.
+          </p>
+
           {helloWordData.words.map((word, index) => (
             <div key={word.id} className="flex items-center gap-2 mb-2">
               <div className="flex-1">
@@ -116,7 +120,7 @@ const HelloWordSection = ({
           <Button
             onClick={addWord}
             disabled={helloWordData.words.length >= 7}
-            className="w-full mt-2 px-4 py-2 bg-blue-500 text-white rounded"
+            className="w-full mt-2 px-4 py-2"
           >
             내용 추가
           </Button>

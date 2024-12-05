@@ -6,6 +6,7 @@ import { Dialog } from "@headlessui/react";
 import { SkillsDataType } from "@/types/types";
 import { skillIcons } from "./data/skillIcons";
 import { BsBoxArrowUp, BsTrash } from "react-icons/bs";
+import Button from "../common/button/Button";
 
 const SkillsSection = ({
   onChange,
@@ -115,7 +116,9 @@ const SkillsSection = ({
 
       <div className="space-y-4">
         <div>
-          <h3 className="font-medium mb-2">스킬 목록</h3>
+          <p className="text-sm text-gray-600">
+            본인의 기술 스택을 선택해 보세요.
+          </p>
           {skillsData.skills.map((skill, index) => (
             <div key={skill.id} className="flex items-center gap-2 mb-2">
               <div className="w-8">
@@ -170,12 +173,9 @@ const SkillsSection = ({
               </button>
             </div>
           ))}
-          <button
-            onClick={addSkill}
-            className="w-full mt-2 px-4 py-2 bg-blue-500 text-white rounded"
-          >
+          <Button onClick={addSkill} className="w-full mt-2 px-4 py-2">
             스킬 추가
-          </button>
+          </Button>
         </div>
       </div>
       <SkillIconSelector

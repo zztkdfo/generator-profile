@@ -28,6 +28,9 @@ const IntroSection = ({
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-bold">소개 섹션</h2>
+      <p className="text-sm text-gray-600">
+        본인을 소개하는 섹션입니다. 임펙트 있는 설명을 작성해 보세요.
+      </p>
 
       <div className="space-y-2">
         <input
