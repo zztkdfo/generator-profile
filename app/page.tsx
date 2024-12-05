@@ -68,9 +68,9 @@ export default function Home() {
   const [activeMenu, setActiveMenu] = useState<string | null>("1");
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
     { id: "1", title: "Introduction" },
-    { id: "2", title: "Hello World!" },
+    { id: "2", title: "Hello World" },
     { id: "3", title: "Skills" },
-    { id: "4", title: "Latest articles" },
+    { id: "4", title: "Latest Articles" },
   ]);
 
   // 메뉴 아이템 변경 함수
