@@ -3,7 +3,7 @@ import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
 import Content from "@/components/Content/Content";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, useEffect } from "react";
 import {
   HelloWordDataType,
   IntroductionDataType,
@@ -377,12 +377,24 @@ export default function Home() {
     // 개별 updateProfileDataAndMarkdown 호출 제거
   }, [updateMarkdownPreview]);
 
+  // profileData가 변경될 때마다 마크다운 미리보기를 업데이트
+  useEffect(() => {
+    const newMarkdowns = {
+      introduction: convertIntroductionToMarkdown(profileData.introduction),
+      skills: convertSkillsToMarkdown(profileData.skills),
+      helloWorld: convertHelloWorldToMarkdown(profileData.helloWorld),
+      articles: convertArticlesToMarkdown(profileData.articles),
+    };
+    updateMarkdownPreview(newMarkdowns);
+  }, [profileData, updateMarkdownPreview]);
+
   // 현재 선택된 메뉴에 따라 섹션을 렌더링하는 함수
   const renderActiveSection = useMemo(() => {
     switch (activeMenu) {
       case "1":
         return (
           <IntroSection
+            key={JSON.stringify(profileData.introduction)}
             onChange={handleIntroductionChange}
             initialData={profileData.introduction}
           />
@@ -417,6 +429,7 @@ export default function Home() {
         // default:
         return (
           <IntroSection
+            key={JSON.stringify(profileData.introduction)}
             onChange={handleIntroductionChange}
             initialData={profileData.introduction}
           />

@@ -26,7 +26,7 @@ const Header = ({
             🚀 Copy Readme
           </Button>
           <Button radius="large" onClick={handleAutoInputData}>
-            ⚙️ Auto Data
+            ⚙️ Auto Save
           </Button>
         </div>
       </div>
