@@ -8,7 +8,7 @@ import { techColors } from "@/components/sections/data/techColors";
 export const convertIntroductionToMarkdown = (
   data: IntroductionDataType
 ): string => {
-  if (!data.mainTitle && !data.email && !data.philosophy && !data.description) {
+  if (!data.mainTitle && !data.email && !data.description) {
     return "# Welcome to my GitHub Profile!\n\n_프로필 정보를 입력해주세요._";
   }
 
@@ -35,7 +35,6 @@ ${emails}
 <div style="display: flex; align-items: flex-start; gap: 20px;">
   <div style="white-space: pre-line;">
     ${data.description ? `${data.description}` : ""}
-    ${data.philosophy ? `\n${data.philosophy}` : ""}
   </div>
   <img src='https://github.githubassets.com/images/mona-whisper.gif' width='200'>
 </div>\n`;

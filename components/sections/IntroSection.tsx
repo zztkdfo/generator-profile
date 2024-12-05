@@ -3,23 +3,16 @@
 import { IntroductionDataType } from "@/types/types";
 import { useState } from "react";
 
-interface IntroductionData {
-  mainTitle: string; // 대제목
-  email: string; // 이메일 주소
-  philosophy: string; // 본인의 철학
-  description: string; // 상세 소개글
-}
-
 const IntroSection = ({
   onChange,
   initialData,
 }: {
-  onChange: (data: IntroductionData) => void;
+  onChange: (data: IntroductionDataType) => void;
   initialData: IntroductionDataType;
 }) => {
   const [introData, setIntroData] = useState<IntroductionDataType>(initialData);
 
-  const handleChange = (field: keyof IntroductionData, value: string) => {
+  const handleChange = (field: keyof IntroductionDataType, value: string) => {
     const newData = { ...introData, [field]: value };
     setIntroData(newData);
     onChange(newData);

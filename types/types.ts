@@ -6,7 +6,6 @@ export interface MenuItemType {
 export interface IntroductionDataType {
   mainTitle: string;
   email: string;
-  philosophy: string;
   description: string;
 }
 
