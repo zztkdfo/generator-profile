@@ -394,7 +394,6 @@ export default function Home() {
       case "1":
         return (
           <IntroSection
-            key={JSON.stringify(profileData.introduction)}
             onChange={handleIntroductionChange}
             initialData={profileData.introduction}
           />
@@ -420,24 +419,13 @@ export default function Home() {
             initialData={profileData.articles}
           />
         );
-        // case "5":
-        //   return <BlogPostsSection />;
-        // case "6":
-        //   return <SpotifySection />;
-        // case "7":
-        //   return <VisitorsSection />;
-        // default:
-        return (
-          <IntroSection
-            key={JSON.stringify(profileData.introduction)}
-            onChange={handleIntroductionChange}
-            initialData={profileData.introduction}
-          />
-        );
     }
   }, [
     activeMenu,
-    profileData,
+    profileData.introduction,
+    profileData.helloWorld,
+    profileData.skills,
+    profileData.articles,
     handleIntroductionChange,
     handleSkillsChange,
     handleHelloWorldChange,

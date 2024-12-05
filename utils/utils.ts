@@ -102,7 +102,7 @@ export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {
           ? ` style="height: 30px !important; max-height: 30px !important; display: inline-block !important;"`
           : "";
 
-        markdown += `<img src="${imageUrl}" height="30"${styleAttr}/>\n`;
+        markdown += `<img src="${imageUrl}" height="30"${styleAttr}/> \n`;
       }
     });
     markdown += `</div>\n\n`;
