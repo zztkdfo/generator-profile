@@ -80,7 +80,7 @@ export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {
   });
 
   Object.entries(skillsByCategory).forEach(([category, skills]) => {
-    markdown += `### ${category}\n`;
+    markdown += `### ${category}\n\n`;
     markdown += `<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">\n`;
     skills.forEach((skill) => {
       if (skill.name) {
@@ -105,7 +105,7 @@ export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {
         markdown += `<img src="${imageUrl}" height="30"${styleAttr}/>\n`;
       }
     });
-    markdown += `</div>`;
+    markdown += `</div>\n\n`;
   });
 
   return markdown;
