@@ -79,6 +79,31 @@ ${formattedDescription}
 `;
 };
 
+// 웹 프리뷰용
+export const convertHelloWorldToPreview = (
+  helloWordData: HelloWordDataType
+): string => {
+  if (!helloWordData?.words || helloWordData.words.length === 0) {
+    return "";
+  }
+
+  const userContent = helloWordData.words
+    .map((word) => `• ${word.text}`)
+    .join("\n");
+
+  return `## Hello World!! 🤔
+
+<div style="display: flex; align-items: flex-start; gap: 50px;">
+  <div style="white-space: pre-line;">
+    ${userContent}
+  </div>
+  <img align="right" alt="코딩" width="320" src="https://images.squarespace-cdn.com/content/v1/5769fc401b631bab1addb2ab/1541580611624-TE64QGKRJG8SWAIUS7NS/ke17ZwdGBToddI8pDm48kPoswlzjSVMM-SxOp7CV59BZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI6FXy8c9PWtBlqAVlUS5izpdcIXDZqDYvprRqZ29Pw0o/coding-freak.gif" />
+</div>
+
+`;
+};
+
+// GitHub 복사용
 export const convertHelloWorldToMarkdown = (
   helloWordData: HelloWordDataType
 ): string => {
@@ -91,12 +116,12 @@ export const convertHelloWorldToMarkdown = (
     .join("\n");
 
   return `## Hello World!! 🤔\n\n
+  <img align="right" alt="코딩" width="320" src="https://images.squarespace-cdn.com/content/v1/5769fc401b631bab1addb2ab/1541580611624-TE64QGKRJG8SWAIUS7NS/ke17ZwdGBToddI8pDm48kPoswlzjSVMM-SxOp7CV59BZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI6FXy8c9PWtBlqAVlUS5izpdcIXDZqDYvprRqZ29Pw0o/coding-freak.gif" />\n\n
 
-${userContent}\n\n
-
-<div align="center">
-  <img alt="코딩" width="320" src="https://images.squarespace-cdn.com/content/v1/5769fc401b631bab1addb2ab/1541580611624-TE64QGKRJG8SWAIUS7NS/ke17ZwdGBToddI8pDm48kPoswlzjSVMM-SxOp7CV59BZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI6FXy8c9PWtBlqAVlUS5izpdcIXDZqDYvprRqZ29Pw0o/coding-freak.gif" />
-</div>\n\n `;
+${userContent}
+<br />
+<br />
+`;
 };
 
 export const convertSkillsToMarkdown = (skillsData: SkillsDataType): string => {

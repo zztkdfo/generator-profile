@@ -13,6 +13,7 @@ import {
 import {
   convertHelloWorldToMarkdown,
   convertIntroductionToPreview,
+  convertHelloWorldToPreview,
   convertIntroductionToMarkdown,
   convertSkillsToMarkdown,
   convertArticlesToMarkdown,
@@ -95,7 +96,7 @@ export default function Home() {
       // 웹 미리보기용 마크다운
       const previewMarkdown = [
         convertIntroductionToPreview(profileData.introduction),
-        newMarkdowns.helloWorld,
+        convertHelloWorldToPreview(profileData.helloWorld),
         newMarkdowns.skills,
         newMarkdowns.articles,
       ]
@@ -105,7 +106,7 @@ export default function Home() {
       // GitHub 복사용 마크다운
       const copyMarkdown = [
         convertIntroductionToMarkdown(profileData.introduction),
-        newMarkdowns.helloWorld,
+        convertHelloWorldToMarkdown(profileData.helloWorld),
         newMarkdowns.skills,
         newMarkdowns.articles,
       ]
