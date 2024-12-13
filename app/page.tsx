@@ -12,6 +12,7 @@ import {
 } from "@/types/types";
 import {
   convertHelloWorldToMarkdown,
+  convertIntroductionToPreview,
   convertIntroductionToMarkdown,
   convertSkillsToMarkdown,
   convertArticlesToMarkdown,
@@ -63,7 +64,7 @@ export default function Home() {
 
   // 마크다운 문자열을 저장할 state
   const [markdownPreview, setMarkdownPreview] = useState("");
-  // const [markdownOutput, setMarkdownOutput] = useState<string>(""); // 변환된 마크다운
+  const [markdownForCopy, setMarkdownForCopy] = useState(""); // 복사용
 
   const [activeMenu, setActiveMenu] = useState<string | null>("1");
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
@@ -83,7 +84,7 @@ export default function Home() {
     setActiveMenu(menu);
   }, []);
 
-  // 전체 마크다운 업데이트 함수
+  // 전체 마크다운 업데이트 함수 수정
   const updateMarkdownPreview = useCallback(
     (newMarkdowns: {
       introduction: string;
@@ -91,8 +92,9 @@ export default function Home() {
       helloWorld: string;
       articles: string;
     }) => {
-      const combinedMarkdown = [
-        newMarkdowns.introduction,
+      // 웹 미리보기용 마크다운
+      const previewMarkdown = [
+        convertIntroductionToPreview(profileData.introduction),
         newMarkdowns.helloWorld,
         newMarkdowns.skills,
         newMarkdowns.articles,
@@ -100,9 +102,20 @@ export default function Home() {
         .filter(Boolean)
         .join("\n\n");
 
-      setMarkdownPreview(combinedMarkdown);
+      // GitHub 복사용 마크다운
+      const copyMarkdown = [
+        convertIntroductionToMarkdown(profileData.introduction),
+        newMarkdowns.helloWorld,
+        newMarkdowns.skills,
+        newMarkdowns.articles,
+      ]
+        .filter(Boolean)
+        .join("\n\n");
+
+      setMarkdownPreview(previewMarkdown);
+      setMarkdownForCopy(copyMarkdown);
     },
-    []
+    [profileData]
   );
 
   // 공통 데이터 업데이트 함수
@@ -179,14 +192,15 @@ export default function Home() {
     [updateProfileDataAndMarkdown]
   );
 
-  // 마크다운 복사 함수
+  // 마크다운 복사 함수 수정
   const handleCopyMarkdown = useCallback(() => {
-    // navigator.clipboard
-    //   .writeText(markdownOutput)
-    //   .then(() => alert("마크다운이 클립보드에 복사되었습니다!"))
-    //   .catch((err) => console.error("복사 실패:", err));
-    // }, [markdownOutput]);
-  }, []);
+    console.log("markdownForCopy", markdownForCopy);
+
+    navigator.clipboard
+      .writeText(markdownForCopy) // markdownPreview 대신 markdownForCopy 사용
+      .then(() => alert("마크다운이 클립보드에 복사되었습니다!"))
+      .catch((err) => console.error("복사 실패:", err));
+  }, [markdownForCopy]);
 
   const handleAutoInputData = useCallback(() => {
     // 인트로 섹션 자동 데이터 입력
