@@ -447,6 +447,19 @@ export default function Home() {
     handleArticlesChange,
   ]);
 
+  // 데이터 존재 여부 확인
+  const hasData = useMemo(() => {
+    return (
+      !!profileData.introduction.mainTitle ||
+      !!profileData.introduction.email ||
+      !!profileData.introduction.description ||
+      profileData.helloWorld.words.length > 0 ||
+      profileData.skills.skills.length > 0 ||
+      !!profileData.articles.mainBlog ||
+      profileData.articles.articles.length > 0
+    );
+  }, [profileData]);
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* 메뉴 영역 */}
@@ -460,6 +473,7 @@ export default function Home() {
       {/* 콘텐츠 영역 */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header
+          hasData={hasData}
           menuItems={menuItems}
           activeMenu={activeMenu}
           handleCopyMarkdown={handleCopyMarkdown}

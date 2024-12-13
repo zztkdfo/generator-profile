@@ -1,6 +1,7 @@
 import { MenuItemType } from "@/types/types";
 import Button from "@/components/common/button/Button";
 interface HeaderProps {
+  hasData: boolean;
   menuItems: MenuItemType[];
   activeMenu: string | null;
   handleCopyMarkdown: () => void;
@@ -8,6 +9,7 @@ interface HeaderProps {
 }
 
 const Header = ({
+  hasData,
   menuItems,
   activeMenu,
   handleCopyMarkdown,
@@ -22,11 +24,15 @@ const Header = ({
           </h2>
         </div>
         <div className="flex gap-2">
-          <Button radius="large" onClick={handleCopyMarkdown}>
+          <Button
+            disabled={!hasData}
+            radius="large"
+            onClick={handleCopyMarkdown}
+          >
             🚀 Copy Readme
           </Button>
           <Button radius="large" onClick={handleAutoInputData}>
-            ⚙️ Auto Save
+            ⚙️ Template
           </Button>
         </div>
       </div>
