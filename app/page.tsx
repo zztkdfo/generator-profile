@@ -378,19 +378,26 @@ export default function Home() {
       helloWorld: convertHelloWorldToMarkdown(helloWorld),
     };
 
-    // 상태 업데이트를 한번에 처리
-    setProfileData({
-      introduction: intro,
-      skills: skills,
-      articles: articles,
-      helloWorld: helloWorld,
-    });
+    // 현재 활성화된 메뉴 저장
+    const currentMenu = activeMenu;
+
+    // 메뉴를 잠시 null로 설정했다가 다시 원래 값으로 설정
+    setActiveMenu(null);
+    setTimeout(() => {
+      setProfileData({
+        introduction: intro,
+        skills: skills,
+        helloWorld: helloWorld,
+        articles: articles,
+      });
+      setActiveMenu(currentMenu);
+    }, 0);
 
     setSectionMarkdowns(newMarkdowns);
     updateMarkdownPreview(newMarkdowns);
 
     // 개별 updateProfileDataAndMarkdown 호출 제거
-  }, [updateMarkdownPreview]);
+  }, [activeMenu, updateMarkdownPreview]);
 
   // profileData가 변경될 때마다 마크다운 미리보기를 업데이트
   useEffect(() => {
