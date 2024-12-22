@@ -4,7 +4,7 @@ import { useState, useCallback, useMemo } from "react";
 import { DropResult } from "@hello-pangea/dnd";
 import SidebarHeader from "./SidebarHeader";
 import MenuList from "../menu/MenuList";
-import { MenuItem } from "@/app/page";
+import { MenuItem } from "@/app/generator/page";
 import { v4 as uuid } from "uuid";
 
 interface SidebarProps {

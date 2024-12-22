@@ -116,7 +116,7 @@ const SkillsSection = ({
 
       <div className="space-y-4">
         <div>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 mb-2">
             본인의 기술 스택을 선택해 보세요.
           </p>
           {skillsData.skills.map((skill, index) => (

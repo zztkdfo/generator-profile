@@ -40,7 +40,7 @@ export default function LandingPage(): React.ReactNode {
   return (
     <div className="min-h-screen">
       {/* Hero 섹션 */}
-      <section className="bg-gradient-to-r from-[rgb(75,81,97)] to-[rgb(10,12,17)] text-white py-20">
+      <section className="bg-[rgb(26,31,44)] text-white py-20">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-5xl font-bold mb-4">
             GitHub 프로필을 손쉽게 만들어보세요
