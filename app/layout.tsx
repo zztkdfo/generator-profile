@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "깃헙 프로필 Generator",
+  title: "GitHub Profile Generator",
   description: "쉽고 빠르게 깃헙 프로필을 만들어보세요",
   openGraph: {
     title: "깃헙 프로필 Generator",
@@ -34,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <link
           rel="stylesheet"
           as="style"
