@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "GitHub Profile Generator",
   description: "쉽고 빠르게 깃헙 프로필을 만들어보세요",
   openGraph: {
-    title: "깃헙 프로필 Generator",
+    title: "GitHub Profile Generator",
     description: "쉽고 빠르게 깃헙 프로필을 만들어보세요",
     type: "website",
     locale: "ko_KR",
