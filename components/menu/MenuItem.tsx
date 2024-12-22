@@ -1,5 +1,6 @@
-import { FiEdit2, FiTrash2, FiCheck } from "react-icons/fi";
-import { Draggable } from "@hello-pangea/dnd";
+// import { FiEdit2, FiTrash2, FiCheck } from "react-icons/fi";
+// import { Draggable } from "@hello-pangea/dnd";
+import { FiCheck } from "react-icons/fi";
 import { MenuItemType } from "@/types/types";
 
 interface MenuItemProps {
@@ -18,13 +19,13 @@ interface MenuItemProps {
 
 export default function MenuItem({
   item,
-  index,
+  // index,
   activeMenu,
   editingId,
   editingTitle,
 
   handleEdit,
-  handleDelete,
+  // handleDelete,
   handleEditingIdChange,
   handleActiveMenuChange,
   handleEditingTitleChange,
