@@ -212,8 +212,8 @@ export default function Home() {
   const handleAutoInputData = useCallback(() => {
     // 인트로 섹션 자동 데이터 입력
     const intro: IntroductionDataType = {
-      mainTitle: "반갑습니다, 저는 개발자 zztkdfo 입니다.",
-      email: "zztkdfo@gmail.com",
+      mainTitle: "반갑습니다, 저는 개발자 OOO 입니다.",
+      email: "xxx@gmail.com",
       description: `안녕하세요, 반갑습니다. 🤗
 저는 현재 프리랜서 및 퍼스널브랜딩에 관심이 많은 프론트엔드 개발자 입니다. 🚀
 지금은 취업 준비생, 대학생, 비전공자들에게 작게나마 도움을 주는 일을 하고 있습니다. 🤝
@@ -379,7 +379,7 @@ export default function Home() {
       ],
       showImage: true,
       imageSrc:
-        "https://images.squarespace-cdn.com/content/v1/5769fc401b631bab1addb2ab/1541580611624-TE64QGKRJG8SWAIUS7NS/ke17ZwdGBToddI8pDm48kPoswlzjSVMM-SxOp7CV59BZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI6FXy8c9PWtBlqAVlUS5izpdcIXDZqDYvprRqZ29Pw0o/coding-freak.gif",
+        "https://github.com/user-attachments/assets/eb7ea291-99db-4225-b84b-2d597dd20370",
     };
 
     // 모든 마크다운을 한번에 생성
