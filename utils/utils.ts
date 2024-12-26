@@ -100,7 +100,7 @@ export const convertHelloWorldToPreview = (
 
   const imageSection =
     helloWordData.showImage && helloWordData.imageSrc
-      ? `<img align="right" alt="코딩" width="320" src="${helloWordData.imageSrc}" />`
+      ? `<img align="right" alt="코딩" width="240" src="${helloWordData.imageSrc}" />`
       : ``;
 
   return `## Hello World!! 🤔
@@ -128,7 +128,7 @@ export const convertHelloWorldToMarkdown = (
 
   const imageSection =
     helloWordData.showImage && helloWordData.imageSrc
-      ? `<img align="right" alt="코딩" width="320" src="${helloWordData.imageSrc}" />`
+      ? `<img align="right" alt="코딩" width="220" src="${helloWordData.imageSrc}" />`
       : ``;
 
   return `## Hello World!! 🤔\n\n
