@@ -72,7 +72,7 @@ export const convertIntroductionToMarkdown = (
     : "";
 
   const imageSection = data.showImage
-    ? '\n\n<img align="right" alt="코딩" width="200" src="https://github.githubassets.com/images/mona-whisper.gif" />'
+    ? `\n\n<img align="right" alt="코딩" width="200" src="${data.imageSrc}"/>`
     : "";
 
   return `## ${data.mainTitle} <img src="https://raw.githubusercontent.com/ABSphreak/ABSphreak/master/gifs/Hi.gif" width="24"/>\n
