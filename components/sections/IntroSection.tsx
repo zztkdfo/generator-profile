@@ -43,7 +43,7 @@ const IntroSection = ({
           onChange={(e) => handleChange("showImage", e.target.checked)}
         />
         <label htmlFor="showImage" className="text-sm text-gray-700">
-          프로필 이미지 표시
+          이미지 추가
         </label>
         {introData.showImage && (
           <button

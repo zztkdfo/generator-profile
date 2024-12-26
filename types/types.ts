@@ -26,6 +26,8 @@ export interface HelloWordDataType {
     text: string;
     placeholder?: string;
   }[];
+  showImage?: boolean;
+  imageSrc?: string;
 }
 
 export interface ArticlesDataType {

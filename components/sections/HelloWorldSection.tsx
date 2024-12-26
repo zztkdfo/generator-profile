@@ -5,6 +5,7 @@ import { BsTrash } from "react-icons/bs";
 import Button from "@/components/common/button/Button"; // Button 컴포넌트 import 추가
 
 import { HelloWordDataType } from "@/types/types";
+import ImageSelectModal from "@/components/ImageSelectModal";
 
 const HelloWordSection = ({
   onChange,
@@ -32,6 +33,7 @@ const HelloWordSection = ({
   );
 
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   const handleChange = useCallback(
     (
@@ -77,10 +79,15 @@ const HelloWordSection = ({
     [helloWordData, handleChange]
   );
 
+  const handleImageSelect = (imageSrc: string) => {
+    const newData = { ...helloWordData, imageSrc };
+    setHelloWordData(newData);
+    onChange(newData);
+  };
+
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-bold">Hello World 섹션</h2>
-
       <div className="space-y-4">
         <div>
           <p className="text-sm text-gray-600">
@@ -89,6 +96,37 @@ const HelloWordSection = ({
           <p className="text-sm py-1 mb-2 text-gray-600">
             이모지를 사용하여 더욱 풍성하고 멋지게 꾸며보세요.
           </p>
+          {/* 이미지 선택 섹션 */}
+          <div className="flex items-center space-x-2 mt-2 mb-2">
+            <input
+              type="checkbox"
+              id="showHelloWorldImage"
+              className="w-4 h-4"
+              checked={helloWordData.showImage}
+              onChange={(e) => {
+                const newData = {
+                  ...helloWordData,
+                  showImage: e.target.checked,
+                };
+                setHelloWordData(newData);
+                onChange(newData);
+              }}
+            />
+            <label
+              htmlFor="showHelloWorldImage"
+              className="text-sm text-gray-700"
+            >
+              이미지 추가
+            </label>
+            {helloWordData.showImage && (
+              <button
+                onClick={() => setIsImageModalOpen(true)}
+                className="ml-4 px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                이미지 선택
+              </button>
+            )}
+          </div>
 
           {helloWordData.words.map((word, index) => (
             <div key={word.id} className="flex items-center gap-2 mb-2">
@@ -125,7 +163,13 @@ const HelloWordSection = ({
             내용 추가
           </Button>
         </div>
-      </div>
+      </div>{" "}
+      <ImageSelectModal
+        isOpen={isImageModalOpen}
+        onClose={() => setIsImageModalOpen(false)}
+        onSelect={handleImageSelect}
+        selectedImage={helloWordData.imageSrc}
+      />
     </div>
   );
 };
