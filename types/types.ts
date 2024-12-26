@@ -7,6 +7,8 @@ export interface IntroductionDataType {
   mainTitle: string;
   email: string;
   description: string;
+  showImage?: boolean;
+  imageSrc?: string;
 }
 
 export interface SkillsDataType {

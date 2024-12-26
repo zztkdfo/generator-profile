@@ -2,7 +2,7 @@
 
 import { IntroductionDataType } from "@/types/types";
 import { useState } from "react";
-
+import ImageSelectModal from "@/components/ImageSelectModal";
 const IntroSection = ({
   onChange,
   initialData,
@@ -11,9 +11,19 @@ const IntroSection = ({
   initialData: IntroductionDataType;
 }) => {
   const [introData, setIntroData] = useState<IntroductionDataType>(initialData);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
-  const handleChange = (field: keyof IntroductionDataType, value: string) => {
+  const handleChange = (
+    field: keyof IntroductionDataType,
+    value: string | boolean
+  ) => {
     const newData = { ...introData, [field]: value };
+    setIntroData(newData);
+    onChange(newData);
+  };
+
+  const handleImageSelect = (imageSrc: string) => {
+    const newData = { ...introData, imageSrc };
     setIntroData(newData);
     onChange(newData);
   };
@@ -24,6 +34,26 @@ const IntroSection = ({
       <p className="text-sm text-gray-600">
         본인을 소개하는 섹션입니다. 임펙트 있는 설명을 작성해 보세요.
       </p>
+      <div className="flex items-center space-x-2 mt-4">
+        <input
+          type="checkbox"
+          id="showImage"
+          className="w-4 h-4"
+          checked={introData.showImage}
+          onChange={(e) => handleChange("showImage", e.target.checked)}
+        />
+        <label htmlFor="showImage" className="text-sm text-gray-700">
+          프로필 이미지 표시
+        </label>
+        {introData.showImage && (
+          <button
+            onClick={() => setIsImageModalOpen(true)}
+            className="ml-4 px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            이미지 선택
+          </button>
+        )}
+      </div>
 
       <div className="space-y-2">
         <input
@@ -50,6 +80,13 @@ const IntroSection = ({
           onChange={(e) => handleChange("description", e.target.value)}
         />
       </div>
+
+      <ImageSelectModal
+        isOpen={isImageModalOpen}
+        onClose={() => setIsImageModalOpen(false)}
+        onSelect={handleImageSelect}
+        selectedImage={introData.imageSrc}
+      />
     </div>
   );
 };

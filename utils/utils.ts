@@ -31,13 +31,17 @@ export const convertIntroductionToPreview = (
     ? data.description.split("\n").join("  \n")
     : "";
 
+  const imageSection = data.showImage
+    ? `<img src="${data.imageSrc}" width="200" />`
+    : "";
+
   return `# ${data.mainTitle} <img src="https://raw.githubusercontent.com/ABSphreak/ABSphreak/master/gifs/Hi.gif" width="30"> \n\n
 <div style="display: flex; align-items: center; gap: 20px;">
 <div align="left">
 ${emails}\n\n
 ${formattedDescription}
 </div>
-<img src="https://github.githubassets.com/images/mona-whisper.gif" width="200" />
+${imageSection}
 </div>\n\n`;
 };
 
@@ -67,12 +71,15 @@ export const convertIntroductionToMarkdown = (
     ? data.description.split("\n").join("<br />")
     : "";
 
-  return `## ${data.mainTitle} <img src="https://raw.githubusercontent.com/ABSphreak/ABSphreak/master/gifs/Hi.gif" width="24"/>\n
+  const imageSection = data.showImage
+    ? '\n\n<img align="right" alt="코딩" width="200" src="https://github.githubassets.com/images/mona-whisper.gif" />'
+    : "";
 
-<img align="right" alt="코딩" width="200" src="https://github.githubassets.com/images/mona-whisper.gif" width="200" /> 
+  return `## ${data.mainTitle} <img src="https://raw.githubusercontent.com/ABSphreak/ABSphreak/master/gifs/Hi.gif" width="24"/>\n
+${imageSection}
 
 ${emails}\n
-${formattedDescription} 
+${formattedDescription}
 
 <br />
 <br />
