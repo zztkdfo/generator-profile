@@ -175,6 +175,20 @@ export default function LandingPage(): React.ReactNode {
               </p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <div className="text-2xl mb-4">📊</div>
+              <h3 className="font-bold mb-2">프로젝트 쇼케이스</h3>
+              <p className="text-gray-600">
+                주요 프로젝트를 시각적으로 돋보이게 표시합니다.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <div className="text-2xl mb-4">🏆</div>
+              <h3 className="font-bold mb-2">뱃지 컬렉션</h3>
+              <p className="text-gray-600">
+                기술 스택, 자격증, 수상 경력 등을 뱃지로 표현합니다.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
               <div className="text-2xl mb-4">⚡️</div>
               <h3 className="font-bold mb-2">실시간 마크다운</h3>
               <p className="text-gray-600">
@@ -193,20 +207,6 @@ export default function LandingPage(): React.ReactNode {
               <h3 className="font-bold mb-2">GitHub 통계 연동</h3>
               <p className="text-gray-600">
                 자동으로 GitHub 통계와 활동 데이터를 가져와 표시합니다.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-              <div className="text-2xl mb-4">✨</div>
-              <h3 className="font-bold mb-2">AI 프로필 생성</h3>
-              <p className="text-gray-600">
-                AI가 GitHub 활동을 분석하여 최적화된 프로필을 추천합니다.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-              <div className="text-2xl mb-4">🔗</div>
-              <h3 className="font-bold mb-2">소셜 링크 관리</h3>
-              <p className="text-gray-600">
-                블로그, 포트폴리오 등 다양한 소셜 링크를 쉽게 관리합니다.
               </p>
             </div>
           </div>
