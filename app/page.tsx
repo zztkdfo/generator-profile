@@ -219,7 +219,11 @@ export default function LandingPage(): React.ReactNode {
           <h2 className="text-3xl font-bold mb-8">
             지금 바로 나만의 GitHub 프로필을 만들어보세요
           </h2>
-          <button className="bg-[rgb(26,31,44)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[rgb(36,41,54)] transition-colors">
+
+          <button
+            onClick={() => router.push("/generator")}
+            className="bg-[rgb(26,31,44)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[rgb(36,41,54)] transition-colors"
+          >
             무료로 시작하기
           </button>
         </div>
