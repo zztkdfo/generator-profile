@@ -92,6 +92,27 @@ import {
   SiBabel,
   SiEslint,
   SiPrettier,
+  SiApachekafka,
+  SiCelery,
+  SiFastapi,
+  SiMariadb,
+  SiSqlite,
+  SiNeo4J,
+  SiCouchbase,
+  SiRuby,
+  SiRubyonrails,
+  SiSvelte,
+  SiAstro,
+  SiChakraui,
+  SiMui,
+  SiAntdesign,
+  SiFramer,
+  SiGreensock,
+  SiThreedotjs,
+  SiD3Dotjs,
+  SiWebgl,
+  SiRadixui,
+  SiShadcnui,
 } from "react-icons/si";
 
 export const skillIcons: {
@@ -162,6 +183,54 @@ export const skillIcons: {
     icon: <SiWebpack className="w-6 h-6 text-[#8DD6F9]" />,
     category: "Frontend",
   },
+  Svelte: {
+    icon: <SiSvelte className="w-6 h-6 text-[#FF3E00]" />,
+    category: "Frontend",
+  },
+  Astro: {
+    icon: <SiAstro className="w-6 h-6 text-[#BC52EE]" />,
+    category: "Frontend",
+  },
+  "Chakra UI": {
+    icon: <SiChakraui className="w-6 h-6 text-[#319795]" />,
+    category: "Frontend",
+  },
+  "Material UI": {
+    icon: <SiMui className="w-6 h-6 text-[#007FFF]" />,
+    category: "Frontend",
+  },
+  "Ant Design": {
+    icon: <SiAntdesign className="w-6 h-6 text-[#0170FE]" />,
+    category: "Frontend",
+  },
+  "Framer Motion": {
+    icon: <SiFramer className="w-6 h-6 text-black dark:text-white" />,
+    category: "Frontend",
+  },
+  GSAP: {
+    icon: <SiGreensock className="w-6 h-6 text-[#88CE02]" />,
+    category: "Frontend",
+  },
+  "Three.js": {
+    icon: <SiThreedotjs className="w-6 h-6 text-black dark:text-white" />,
+    category: "Frontend",
+  },
+  "D3.js": {
+    icon: <SiD3Dotjs className="w-6 h-6 text-[#F9A03C]" />,
+    category: "Frontend",
+  },
+  WebGL: {
+    icon: <SiWebgl className="w-6 h-6 text-[#990000]" />,
+    category: "Frontend",
+  },
+  "Radix UI": {
+    icon: <SiRadixui className="w-6 h-6 text-[#808080]" />,
+    category: "Frontend",
+  },
+  "shadcn/ui": {
+    icon: <SiShadcnui className="w-6 h-6 text-black dark:text-white" />,
+    category: "Frontend",
+  },
 
   // Backend
   "Node.js": {
@@ -224,6 +293,26 @@ export const skillIcons: {
     icon: <SiRabbitmq className="w-6 h-6 text-[#FF6600]" />,
     category: "Backend",
   },
+  Kafka: {
+    icon: <SiApachekafka className="w-6 h-6 text-[#231F20]" />,
+    category: "Backend",
+  },
+  Celery: {
+    icon: <SiCelery className="w-6 h-6 text-[#37814A]" />,
+    category: "Backend",
+  },
+  FastAPI: {
+    icon: <SiFastapi className="w-6 h-6 text-[#009688]" />,
+    category: "Backend",
+  },
+  Ruby: {
+    icon: <SiRuby className="w-6 h-6 text-[#CC342D]" />,
+    category: "Backend",
+  },
+  "Ruby on Rails": {
+    icon: <SiRubyonrails className="w-6 h-6 text-[#CC0000]" />,
+    category: "Backend",
+  },
   // Database
   MongoDB: {
     icon: <SiMongodb className="w-6 h-6 text-[#47A248]" />,
@@ -243,6 +332,22 @@ export const skillIcons: {
   },
   Elasticsearch: {
     icon: <SiElasticsearch className="w-6 h-6 text-[#005571]" />,
+    category: "Backend",
+  },
+  MariaDB: {
+    icon: <SiMariadb className="w-6 h-6 text-[#003545]" />,
+    category: "Backend",
+  },
+  SQLite: {
+    icon: <SiSqlite className="w-6 h-6 text-[#003B57]" />,
+    category: "Backend",
+  },
+  Neo4j: {
+    icon: <SiNeo4J className="w-6 h-6 text-[#008CC1]" />,
+    category: "Backend",
+  },
+  Couchbase: {
+    icon: <SiCouchbase className="w-6 h-6 text-[#EA2328]" />,
     category: "Backend",
   },
 
