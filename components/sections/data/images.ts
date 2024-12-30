@@ -96,22 +96,57 @@ export const PROFILE_IMAGES = [
   },
   {
     id: 20,
-    src: "https://user-images.githubusercontent.com/74038190/238200426-29fd6286-4e7b-4d6c-818f-c4765d5e39a9.gif",
-    alt: "프론트엔드 개발",
-  },
-  {
-    id: 21,
-    src: "https://user-images.githubusercontent.com/74038190/238200428-67f477ed-6624-42da-99f0-1a7b1a16eecb.gif",
-    alt: "풀스택 개발",
-  },
-  {
-    id: 22,
     src: "https://user-images.githubusercontent.com/74038190/219923809-b86dc415-a0c2-4a38-bc88-ad6cf06395a8.gif",
     alt: "웹 개발 기술",
   },
   {
-    id: 23,
+    id: 21,
     src: "https://user-images.githubusercontent.com/74038190/212257468-1e9a91f1-b626-4baa-b15d-5c385dfa7ed2.gif",
     alt: "개발자 생활",
+  },
+  {
+    id: 22,
+    src: "https://user-images.githubusercontent.com/74038190/212281775-b468df30-4edc-4bf8-a4ee-f52e1aaddc86.gif",
+    alt: "리액트 개발",
+  },
+  {
+    id: 23,
+    src: "https://user-images.githubusercontent.com/74038190/212257465-7ce8d493-cac5-494e-982a-5a9deb852c4b.gif",
+    alt: "타입스크립트 코딩",
+  },
+  {
+    id: 24,
+    src: "https://user-images.githubusercontent.com/74038190/212257467-871d32b7-e401-42e8-a166-fcfd7baa4c6b.gif",
+    alt: "자바스크립트 코딩",
+  },
+  {
+    id: 25,
+    src: "https://user-images.githubusercontent.com/74038190/212281780-0afd9616-8310-46e9-a898-c4f5269f1387.gif",
+    alt: "노드JS 개발",
+  },
+  {
+    id: 26,
+    src: "https://user-images.githubusercontent.com/74038190/212281763-e6ecd7ef-c4aa-45b6-a97c-f33f6bb592bd.gif",
+    alt: "깃 버전 관리",
+  },
+  {
+    id: 27,
+    src: "https://user-images.githubusercontent.com/74038190/216644497-1951db19-8f3d-4e44-ac08-8e9d7e0d94a7.gif",
+    alt: "귀여운 코딩 고양이",
+  },
+  {
+    id: 28,
+    src: "https://user-images.githubusercontent.com/74038190/212284136-03988914-d899-44b4-b1d9-4eeccf656e44.gif",
+    alt: "깃허브 고양이 로고",
+  },
+  {
+    id: 29,
+    src: "https://user-images.githubusercontent.com/74038190/235223585-049a7ac0-b529-416d-b504-ed24aea7d99b.gif",
+    alt: "귀여운 마우스 커서",
+  },
+  {
+    id: 30,
+    src: "https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif",
+    alt: "미니멀 코드 에디터",
   },
 ];
