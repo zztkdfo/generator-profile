@@ -57,21 +57,21 @@ export default function LandingPage(): React.ReactNode {
   return (
     <div className="min-h-screen">
       {/* Hero 섹션 */}
-      <section className="relative bg-gradient-to-tl from-indigo-400 to-blue-600 text-white py-20 md:py-32 overflow-hidden">
+      <section className="relative bg-gradient-to-tl from-indigo-400 to-blue-600 text-white py-12 sm:py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <div className="inline-block px-3 md:px-4 py-2 bg-white/10 rounded-full text-xs md:text-sm font-medium mb-4 md:mb-6">
             ✨ GitHub 프로필 생성기 v1.0 출시
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
             GitHub 프로필을
             <br />
             손쉽게 만들어보세요
           </h1>
-          <p className="text-lg md:text-xl text-indigo-100 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-indigo-100 max-w-2xl mx-auto">
             Template을 통해 전문가처럼 보이는
           </p>
-          <p className="text-lg md:text-xl mb-8 md:mb-10 text-indigo-100 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl mb-8 md:mb-10 text-indigo-100 max-w-2xl mx-auto">
             GitHub README를 단 몇 분 만에 제작할 수 있습니다.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -105,10 +105,12 @@ export default function LandingPage(): React.ReactNode {
       </section> */}
 
       {/* 주요 기능 섹션 */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">주요 기능</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      <section className="py-12 sm:py-16 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">
+            주요 기능
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             <FeatureCard
               title="템플릿 기반 설정"
               description="미리 준비된 템플릿으로 쉽고 빠르게 작성하세요"
@@ -199,7 +201,8 @@ export default function LandingPage(): React.ReactNode {
               <div className="text-2xl mb-4">💾</div>
               <h3 className="font-bold mb-2">임시저장 기능</h3>
               <p className="text-gray-600">
-                작업 중인 프로필을 저장하고 나중에 불러올 수 있습니다.
+                작업 중인 프로필을 브라우저 localStorage에 저장하고 나중에
+                불러올 수 있습니다.
               </p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">

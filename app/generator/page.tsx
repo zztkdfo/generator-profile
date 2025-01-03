@@ -81,6 +81,54 @@ export default function Home() {
     { id: "3", title: "Skills" },
     { id: "4", title: "Latest Articles" },
   ]);
+  const STORAGE_KEY = "github-profile-generator-data";
+
+  // 임시 저장 함수
+  const handleSaveTemp = useCallback(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(profileData));
+      alert("임시 저장되었습니다!");
+    } catch (error) {
+      console.error("저장 실패:", error);
+      alert("저장에 실패했습니다.");
+    }
+  }, [profileData]);
+
+  // 임시 저장된 데이터 불러오기 함수
+  const handleLoadTemp = useCallback(() => {
+    try {
+      const savedData = localStorage.getItem(STORAGE_KEY);
+      if (!savedData) {
+        alert("저장된 데이터가 없습니다.");
+        return;
+      }
+
+      if (window.confirm("저장된 데이터를 불러오시겠습니까?")) {
+        const parsedData = JSON.parse(savedData);
+        // 현재 활성화된 메뉴 저장
+        const currentMenu = activeMenu;
+        // 메뉴를 잠시 null로 설정했다가 다시 원래 값으로 설정
+        setActiveMenu(null);
+        setTimeout(() => {
+          setProfileData(parsedData);
+          setActiveMenu(currentMenu);
+        }, 0);
+
+        alert("저장된 데이터를 불러왔습니다.");
+      }
+    } catch (error) {
+      console.error("불러오기 실패:", error);
+      alert("데이터 불러오기에 실패했습니다.");
+    }
+  }, []);
+
+  // 임시 저장된 데이터 삭제 함수
+  const handleClearTemp = useCallback(() => {
+    if (window.confirm("임시 저장된 데이터를 삭제하시겠습니까?")) {
+      localStorage.removeItem(STORAGE_KEY);
+      alert("임시 저장된 데이터가 삭제되었습니다.");
+    }
+  }, []);
 
   // 메뉴 아이템 변경 함수
   const handleMenuUpdate = useCallback((updatedItems: MenuItem[]) => {
@@ -507,6 +555,9 @@ export default function Home() {
           activeMenu={activeMenu}
           handleCopyMarkdown={handleCopyMarkdown}
           handleAutoInputData={handleAutoInputData}
+          handleSaveTemp={handleSaveTemp} // 새로운 prop
+          handleLoadTemp={handleLoadTemp} // 새로운 prop
+          handleClearTemp={handleClearTemp}
         />
 
         <Content
