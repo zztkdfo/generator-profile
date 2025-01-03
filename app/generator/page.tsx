@@ -1,6 +1,7 @@
 "use client";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
+import Topbar from "@/components/layout/Topbar";
 import Content from "@/components/Content/Content";
 
 import { useCallback, useMemo, useState, useEffect } from "react";
@@ -480,14 +481,23 @@ export default function Home() {
   }, [profileData]);
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      {/* 메뉴 영역 */}
-      <Sidebar
+    <div className="flex flex-col md:flex-row min-h-screen h-screen bg-gray-100">
+      {/* Topbar - 모바일에서만 표시 */}
+      <Topbar
         menuItems={menuItems}
         activeMenu={activeMenu}
-        handleMenuUpdate={handleMenuUpdate}
         handleActiveMenuChange={handleActiveMenuChange}
       />
+
+      {/* Sidebar - 데스크톱에서만 표시 */}
+      <div className="hidden md:block md:h-screen bg-[#1a1f2c] shadow-lg">
+        <Sidebar
+          menuItems={menuItems}
+          activeMenu={activeMenu}
+          handleMenuUpdate={handleMenuUpdate}
+          handleActiveMenuChange={handleActiveMenuChange}
+        />
+      </div>
 
       {/* 콘텐츠 영역 */}
       <div className="flex-1 flex flex-col overflow-hidden">

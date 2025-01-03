@@ -107,7 +107,7 @@ export default function Sidebar({
   );
 
   return (
-    <div className="w-64 bg-[#1a1f2c] text-cyan-50 shadow-lg">
+    <div className="w-64 text-cyan-50 ">
       <SidebarHeader />
       <div className="p-4">{memoizedMenuList}</div>
     </div>
