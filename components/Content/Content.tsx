@@ -13,16 +13,16 @@ const Content: React.FC<ContentProps> = ({
   markdownPreview,
 }) => {
   return (
-    <div className="flex-1 p-7 overflow-auto">
+    <div className="flex-1 p-4 md:p-7 overflow-auto">
       <div className="h-full">
-        <div className="flex gap-6">
+        <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
           {/* 왼쪽 영역 */}
-          <div className="w-[600px] min-w-[600px] bg-white rounded-lg shadow p-4">
+          <div className="w-full lg:w-[600px] lg:min-w-[600px] bg-white rounded-lg shadow p-4">
             {renderActiveSection}
           </div>
 
           {/* 오른쪽 영역 */}
-          <div className="flex-1 bg-white rounded-lg shadow p-4 overflow-hidden">
+          <div className="w-full flex-1 bg-white rounded-lg shadow p-4 overflow-hidden">
             <ReactMarkdown
               rehypePlugins={[rehypeRaw]}
               components={{

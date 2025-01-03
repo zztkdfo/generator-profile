@@ -80,12 +80,12 @@ const ArticlesSection = ({
             작성해주세요.
           </p>
 
-          <p className="text-sm text-gray-600 mb-2">
-            대표 블로그 URL을 입력해주세요.
-          </p>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            대표 블로그 URL
+          </label>
           <input
             type="url"
-            placeholder="대표 블로그 URL"
+            placeholder="https://example.com"
             className="w-full p-2 border rounded"
             value={mainBlogUrl}
             onChange={(e) => handleMainBlogChange(e.target.value)}
@@ -93,38 +93,55 @@ const ArticlesSection = ({
         </div>
 
         {articles.map((article, index) => (
-          <div key={article.id} className="flex items-center gap-2 mb-2">
-            <div className="flex-1 flex items-center gap-2">
-              <input
-                type="text"
-                placeholder="게시글 제목"
-                className="flex-1 p-2 border rounded"
-                value={article.title}
-                onChange={(e) =>
-                  handleArticleChange(index, "title", e.target.value)
-                }
-              />
-              <input
-                type="url"
-                placeholder="URL 주소"
-                className="flex-1 p-2 border rounded"
-                value={article.url}
-                onChange={(e) =>
-                  handleArticleChange(index, "url", e.target.value)
-                }
-              />
+          <div key={article.id} className="p-4 border rounded-lg bg-gray-50">
+            <div className="flex justify-between items-start mb-4">
+              <span className="text-sm font-medium text-gray-700">
+                게시글 #{index + 1}
+              </span>
+              <button
+                onClick={() => removeArticle(index)}
+                className="p-2 text-red-500 hover:text-red-600 transition rounded-full hover:bg-red-50"
+                title="삭제"
+              >
+                <BsTrash className="w-5 h-5" />
+              </button>
             </div>
-            <button
-              onClick={() => removeArticle(index)}
-              className="p-2 text-red-500 hover:text-red-600 transition rounded-full hover:bg-red-50"
-              title="삭제"
-            >
-              <BsTrash className="w-5 h-5" />
-            </button>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  게시글 제목 *
+                </label>
+                <input
+                  type="text"
+                  placeholder="게시글의 제목을 입력해주세요"
+                  className="w-full p-2 border rounded bg-white"
+                  value={article.title}
+                  onChange={(e) =>
+                    handleArticleChange(index, "title", e.target.value)
+                  }
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  URL 주소 *
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://example.com/article"
+                  className="w-full p-2 border rounded bg-white"
+                  value={article.url}
+                  onChange={(e) =>
+                    handleArticleChange(index, "url", e.target.value)
+                  }
+                />
+              </div>
+            </div>
           </div>
         ))}
 
-        <Button onClick={addArticle} className="w-full mt-2 px-4 py-2">
+        <Button onClick={addArticle} className="w-full mt-4 px-4 py-2">
           게시글 추가
         </Button>
       </div>

@@ -126,7 +126,7 @@ const SkillsSection = ({
                   <div className="w-6 h-6 bg-gray-200 rounded-full" />
                 )}
               </div>
-              <div className="flex-1 flex items-center gap-2">
+              <div className="flex-1 flex items-center gap-1">
                 <input
                   type="text"
                   placeholder="스킬 이름"
@@ -143,30 +143,16 @@ const SkillsSection = ({
                     setSelectedSkillIndex(index);
                     setIsIconSelectorOpen(true);
                   }}
-                  className="p-2 text-gray-500 hover:text-gray-600 transition rounded-full hover:bg-gray-50"
+                  className="p-1 text-gray-500 hover:text-gray-600 transition rounded-full hover:bg-gray-50"
                   title="아이콘 선택"
                 >
                   <BsBoxArrowUp className="w-5 h-5" />
                 </button>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm w-8">{skill.level}/5</span>
-                <input
-                  type="range"
-                  min="1"
-                  max="5"
-                  value={skill.level}
-                  onChange={(e) => {
-                    const newSkills = [...skillsData.skills];
-                    newSkills[index].level = Number(e.target.value);
-                    handleChange("skills", newSkills);
-                  }}
-                  className="w-24"
-                />
-              </div>
+
               <button
                 onClick={() => removeSkill(index)}
-                className="p-2 text-red-500 hover:text-red-600 transition rounded-full hover:bg-red-50"
+                className="p-1 text-red-500 hover:text-red-600 transition rounded-full hover:bg-red-50"
                 title="삭제"
               >
                 <BsTrash className="w-5 h-5" />
