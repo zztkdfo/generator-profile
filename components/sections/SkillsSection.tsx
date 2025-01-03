@@ -120,17 +120,20 @@ const SkillsSection = ({
             본인의 기술 스택을 선택해 보세요.
           </p>
           {skillsData.skills.map((skill, index) => (
-            <div key={skill.id} className="flex items-center gap-2 mb-2">
-              <div className="w-8">
+            <div
+              key={skill.id}
+              className="flex flex-wrap items-center gap-2 mb-2"
+            >
+              <div className="w-8 shrink-0">
                 {(skill.name && skillIcons[skill.name]?.icon) || (
                   <div className="w-6 h-6 bg-gray-200 rounded-full" />
                 )}
               </div>
-              <div className="flex-1 flex items-center gap-1">
+              <div className="flex-1 min-w-[200px] flex items-center gap-1">
                 <input
                   type="text"
                   placeholder="스킬 이름"
-                  className="flex-1 p-2 border rounded"
+                  className="flex-1 p-2 border rounded w-full"
                   value={skill.name}
                   onChange={(e) => {
                     const newSkills = [...skillsData.skills];
@@ -143,7 +146,7 @@ const SkillsSection = ({
                     setSelectedSkillIndex(index);
                     setIsIconSelectorOpen(true);
                   }}
-                  className="p-1 text-gray-500 hover:text-gray-600 transition rounded-full hover:bg-gray-50"
+                  className="p-1 shrink-0 text-gray-500 hover:text-gray-600 transition rounded-full hover:bg-gray-50"
                   title="아이콘 선택"
                 >
                   <BsBoxArrowUp className="w-5 h-5" />
@@ -152,7 +155,7 @@ const SkillsSection = ({
 
               <button
                 onClick={() => removeSkill(index)}
-                className="p-1 text-red-500 hover:text-red-600 transition rounded-full hover:bg-red-50"
+                className="p-1 shrink-0 text-red-500 hover:text-red-600 transition rounded-full hover:bg-red-50"
                 title="삭제"
               >
                 <BsTrash className="w-5 h-5" />
