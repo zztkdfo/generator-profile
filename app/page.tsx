@@ -197,7 +197,12 @@ export default function LandingPage(): React.ReactNode {
                 실시간으로 마크다운 데이터를 확인하고 수정할 수 있습니다.
               </p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 relative">
+              <div className="absolute top-4 right-4">
+                <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                  업데이트 적용
+                </span>
+              </div>
               <div className="text-2xl mb-4">💾</div>
               <h3 className="font-bold mb-2">임시저장 기능</h3>
               <p className="text-gray-600">
@@ -215,7 +220,7 @@ export default function LandingPage(): React.ReactNode {
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 relative">
               <div className="absolute top-4 right-4">
                 <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
-                  완료
+                  업데이트 적용
                 </span>
               </div>
               <div className="text-2xl mb-4">📱</div>
