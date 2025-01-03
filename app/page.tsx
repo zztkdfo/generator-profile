@@ -209,6 +209,19 @@ export default function LandingPage(): React.ReactNode {
                 자동으로 GitHub 통계와 활동 데이터를 가져와 표시합니다.
               </p>
             </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 relative">
+              <div className="absolute top-4 right-4">
+                <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                  완료
+                </span>
+              </div>
+              <div className="text-2xl mb-4">📱</div>
+              <h3 className="font-bold mb-2">반응형 디자인</h3>
+              <p className="text-gray-600">
+                모바일부터 데스크톱까지 모든 디바이스에서 최적화된 화면을
+                제공합니다.
+              </p>
+            </div>
           </div>
         </div>
       </section>
