@@ -31,7 +31,7 @@ export default function MenuList({
   handleEdit,
   handleDelete,
   handleDragEnd,
-  handleAddSection,
+  // handleAddSection,
   handleEditingTitleChange,
   handleEditingIdChange,
   handleActiveMenuChange,
