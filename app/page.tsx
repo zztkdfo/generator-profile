@@ -93,17 +93,6 @@ export default function LandingPage(): React.ReactNode {
         </div>
       </section>
 
-      {/* 통계 섹션 추가 */}
-      {/* <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-12">
-            <StatCard number="10,000+" label="생성된 프로필" />
-            <StatCard number="50+" label="템플릿" />
-            <StatCard number="98%" label="만족도" />
-          </div>
-        </div>
-      </section> */}
-
       {/* 주요 기능 섹션 */}
       <section className="py-12 sm:py-16 md:py-20">
         <div className="container mx-auto px-4 sm:px-6">

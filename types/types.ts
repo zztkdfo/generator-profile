@@ -38,3 +38,20 @@ export interface ArticlesDataType {
     url: string;
   }[];
 }
+export interface Template {
+  id: string;
+  name: string;
+  sections: Section[];
+}
+
+export interface Section {
+  id: string;
+  title: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component: React.ComponentType<any>;
+  initialData:
+    | IntroductionDataType
+    | SkillsDataType
+    | HelloWordDataType
+    | ArticlesDataType;
+}
