@@ -10,6 +10,7 @@ import {
   IntroductionDataType,
   SkillsDataType,
   ArticlesDataType,
+  Template,
 } from "@/types/types";
 import {
   convertHelloWorldToMarkdown,
@@ -528,6 +529,44 @@ export default function Home() {
     );
   }, [profileData]);
 
+  // 템플릿 선택 핸들러 추가
+  const handleTemplateSelect = useCallback(
+    (template: Template) => {
+      if (
+        window.confirm(
+          "템플릿을 적용하시겠습니까? 현재 작성 중인 내용은 사라집니다."
+        )
+      ) {
+        // 현재 활성화된 메뉴 저장
+        const currentMenu = activeMenu;
+
+        // 메뉴를 잠시 null로 설정했다가 다시 원래 값으로 설정
+        setActiveMenu(null);
+        setTimeout(() => {
+          // 템플릿의 초기 데이터로 profileData 업데이트
+          const newProfileData = {
+            introduction:
+              template.sections.find((s) => s.id === "1")?.initialData ||
+              profileData.introduction,
+            helloWorld:
+              template.sections.find((s) => s.id === "2")?.initialData ||
+              profileData.helloWorld,
+            skills:
+              template.sections.find((s) => s.id === "3")?.initialData ||
+              profileData.skills,
+            articles:
+              template.sections.find((s) => s.id === "4")?.initialData ||
+              profileData.articles,
+          };
+
+          setProfileData(newProfileData);
+          setActiveMenu(currentMenu);
+        }, 0);
+      }
+    },
+    [activeMenu, profileData]
+  );
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen h-screen bg-gray-100">
       {/* Topbar - 모바일에서만 표시 */}
@@ -555,9 +594,10 @@ export default function Home() {
           activeMenu={activeMenu}
           handleCopyMarkdown={handleCopyMarkdown}
           handleAutoInputData={handleAutoInputData}
-          handleSaveTemp={handleSaveTemp} // 새로운 prop
-          handleLoadTemp={handleLoadTemp} // 새로운 prop
+          handleSaveTemp={handleSaveTemp}
+          handleLoadTemp={handleLoadTemp}
           handleClearTemp={handleClearTemp}
+          onTemplateSelect={handleTemplateSelect}
         />
 
         <Content

@@ -8,7 +8,7 @@ import { Template } from "@/types/types";
 export const templates: Template[] = [
   {
     id: "template1",
-    name: "기본 프로필",
+    name: "💡 기본 프로필",
     sections: [
       {
         id: "1",
@@ -200,7 +200,21 @@ export const templates: Template[] = [
   },
   {
     id: "template2",
-    name: "개발자 포트폴리오",
+    name: "💻 프론트엔드 개발자",
+    sections: [
+      // 다른 구성의 섹션들
+    ],
+  },
+  {
+    id: "template3",
+    name: "⚙️ 백엔드 개발자",
+    sections: [
+      // 다른 구성의 섹션들
+    ],
+  },
+  {
+    id: "template4",
+    name: "📊 데이터 엔지니어",
     sections: [
       // 다른 구성의 섹션들
     ],

@@ -41,6 +41,7 @@ export interface ArticlesDataType {
 export interface Template {
   id: string;
   name: string;
+  isAvailable: boolean;
   sections: Section[];
 }
 

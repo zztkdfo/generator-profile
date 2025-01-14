@@ -1,7 +1,8 @@
-import { MenuItemType } from "@/types/types";
+import { MenuItemType, Template } from "@/types/types";
 import Button from "@/components/common/button/Button";
 import { Menu } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { templates } from "../sections/data/templates";
 
 interface HeaderProps {
   hasData: boolean;
@@ -9,9 +10,10 @@ interface HeaderProps {
   activeMenu: string | null;
   handleCopyMarkdown: () => void;
   handleAutoInputData: () => void;
-  handleSaveTemp: () => void; // 새로운 prop
-  handleLoadTemp: () => void; // 새로운 prop
-  handleClearTemp: () => void; // 새로운 prop
+  handleSaveTemp: () => void;
+  handleLoadTemp: () => void;
+  handleClearTemp: () => void;
+  onTemplateSelect: (template: Template) => void;
 }
 
 const Header = ({
@@ -23,6 +25,7 @@ const Header = ({
   handleSaveTemp,
   handleLoadTemp,
   handleClearTemp,
+  onTemplateSelect,
 }: HeaderProps) => {
   return (
     <div className="h-auto md:h-16 shadow-sm flex items-center px-4 md:px-8 py-4 md:py-0 bg-white">
@@ -36,7 +39,9 @@ const Header = ({
         <div className="flex gap-2">
           <Menu as="div" className="relative">
             <Menu.Button as={Button} className="flex items-center gap-1">
-              💾 임시저장 <ChevronDownIcon className="w-4 h-4" />
+              <span className="hidden md:inline">💾</span>
+              <span className="text-sm md:text-base">임시저장</span>
+              <ChevronDownIcon className="w-4 h-4" />
             </Menu.Button>
             <Menu.Items className="absolute left-0 md:right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
               <Menu.Item>
@@ -80,7 +85,9 @@ const Header = ({
 
           <Menu as="div" className="relative">
             <Menu.Button as={Button} className="flex items-center gap-1">
-              📄 문서작성 <ChevronDownIcon className="w-4 h-4" />
+              <span className="hidden md:inline">📄</span>
+              <span className="text-sm md:text-base">문서작성</span>
+              <ChevronDownIcon className="w-4 h-4" />
             </Menu.Button>
             <Menu.Items className="absolute left-0 md:right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
               <Menu.Item>
@@ -110,6 +117,30 @@ const Header = ({
                   </button>
                 )}
               </Menu.Item>
+            </Menu.Items>
+          </Menu>
+
+          <Menu as="div" className="relative">
+            <Menu.Button as={Button} className="flex items-center gap-1">
+              <span className="hidden md:inline">📝</span>
+              <span className="text-sm md:text-base">템플릿</span>
+              <ChevronDownIcon className="w-4 h-4" />
+            </Menu.Button>
+            <Menu.Items className="absolute left-0 md:right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+              {templates.map((template) => (
+                <Menu.Item key={template.id}>
+                  {({ active }) => (
+                    <button
+                      onClick={() => onTemplateSelect(template)}
+                      className={`${
+                        active ? "bg-gray-100" : ""
+                      } flex w-full px-4 py-2 text-sm`}
+                    >
+                      {template.name}
+                    </button>
+                  )}
+                </Menu.Item>
+              ))}
             </Menu.Items>
           </Menu>
         </div>
