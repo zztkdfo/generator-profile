@@ -1,4 +1,4 @@
-import { MenuItemType, Template } from "@/types/types";
+import { Template } from "@/types/types";
 import Button from "@/components/common/button/Button";
 import { Menu } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
@@ -6,10 +6,8 @@ import { templates } from "../sections/data/templates";
 
 interface HeaderProps {
   hasData: boolean;
-  menuItems: MenuItemType[];
-  activeMenu: string | null;
+  selectedTemplateId: string | null;
   handleCopyMarkdown: () => void;
-  handleAutoInputData: () => void;
   handleSaveTemp: () => void;
   handleLoadTemp: () => void;
   handleClearTemp: () => void;
@@ -18,25 +16,52 @@ interface HeaderProps {
 
 const Header = ({
   hasData,
-  menuItems,
-  activeMenu,
+  selectedTemplateId,
   handleCopyMarkdown,
-  handleAutoInputData,
   handleSaveTemp,
   handleLoadTemp,
   handleClearTemp,
   onTemplateSelect,
 }: HeaderProps) => {
   return (
-    <div className="h-auto md:h-16 shadow-sm flex items-center px-4 md:px-8 py-4 md:py-0 bg-white">
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4 md:gap-0">
-        <div>
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800">
-            {menuItems.find((item) => item.id === activeMenu)?.title}
-          </h2>
+    <header className="bg-white shadow-sm p-4">
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl font-semibold text-gray-800">
+            {templates.find((t) => t.id === selectedTemplateId)?.name}
+          </h1>
         </div>
 
         <div className="flex gap-2">
+          <Menu as="div" className="relative">
+            <Menu.Button as={Button} className="flex items-center gap-1">
+              <span className="hidden md:inline">📝</span>
+              <span className="text-sm md:text-base">템플릿</span>
+              <ChevronDownIcon className="w-4 h-4" />
+            </Menu.Button>
+            <Menu.Items className="absolute left-0 md:right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+              {templates.map((template) => (
+                <Menu.Item key={template.id}>
+                  {({ active }) => (
+                    <button
+                      onClick={() => onTemplateSelect(template)}
+                      disabled={!template.isAvailable}
+                      className={`${
+                        active ? "bg-gray-100" : ""
+                      } flex w-full px-4 py-2 text-sm ${
+                        !template.isAvailable
+                          ? "opacity-50 cursor-not-allowed text-gray-400"
+                          : ""
+                      }`}
+                    >
+                      {template.name}
+                    </button>
+                  )}
+                </Menu.Item>
+              ))}
+            </Menu.Items>
+          </Menu>
+
           <Menu as="div" className="relative">
             <Menu.Button as={Button} className="flex items-center gap-1">
               <span className="hidden md:inline">💾</span>
@@ -83,74 +108,17 @@ const Header = ({
             </Menu.Items>
           </Menu>
 
-          <Menu as="div" className="relative">
-            <Menu.Button as={Button} className="flex items-center gap-1">
-              <span className="hidden md:inline">📄</span>
-              <span className="text-sm md:text-base">문서작성</span>
-              <ChevronDownIcon className="w-4 h-4" />
-            </Menu.Button>
-            <Menu.Items className="absolute left-0 md:right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    onClick={handleCopyMarkdown}
-                    disabled={!hasData}
-                    className={`${
-                      active ? "bg-gray-100" : ""
-                    } flex w-full px-4 py-2 text-sm ${
-                      !hasData ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
-                  >
-                    📋 마크다운 복사
-                  </button>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    onClick={handleAutoInputData}
-                    className={`${
-                      active ? "bg-gray-100" : ""
-                    } flex w-full px-4 py-2 text-sm`}
-                  >
-                    ✨ 샘플 데이터 생성
-                  </button>
-                )}
-              </Menu.Item>
-            </Menu.Items>
-          </Menu>
-
-          <Menu as="div" className="relative">
-            <Menu.Button as={Button} className="flex items-center gap-1">
-              <span className="hidden md:inline">📝</span>
-              <span className="text-sm md:text-base">템플릿</span>
-              <ChevronDownIcon className="w-4 h-4" />
-            </Menu.Button>
-            <Menu.Items className="absolute left-0 md:right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-              {templates.map((template) => (
-                <Menu.Item key={template.id}>
-                  {({ active }) => (
-                    <button
-                      onClick={() => onTemplateSelect(template)}
-                      disabled={!template.isAvailable}
-                      className={`${
-                        active ? "bg-gray-100" : ""
-                      } flex w-full px-4 py-2 text-sm ${
-                        !template.isAvailable
-                          ? "opacity-50 cursor-not-allowed text-gray-400"
-                          : ""
-                      }`}
-                    >
-                      {template.name}
-                    </button>
-                  )}
-                </Menu.Item>
-              ))}
-            </Menu.Items>
-          </Menu>
+          <Button
+            onClick={handleCopyMarkdown}
+            disabled={!hasData}
+            className="flex items-center gap-1"
+          >
+            <span className="hidden md:inline">📄</span>
+            <span className="text-sm md:text-base">마크다운 복사</span>
+          </Button>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
