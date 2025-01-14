@@ -9,6 +9,7 @@ export const templates: Template[] = [
   {
     id: "template1",
     name: "💡 기본 프로필",
+    isAvailable: true,
     sections: [
       {
         id: "1",
@@ -201,6 +202,7 @@ export const templates: Template[] = [
   {
     id: "template2",
     name: "💻 프론트엔드 개발자",
+    isAvailable: false,
     sections: [
       // 다른 구성의 섹션들
     ],
@@ -208,6 +210,7 @@ export const templates: Template[] = [
   {
     id: "template3",
     name: "⚙️ 백엔드 개발자",
+    isAvailable: false,
     sections: [
       // 다른 구성의 섹션들
     ],
@@ -215,6 +218,7 @@ export const templates: Template[] = [
   {
     id: "template4",
     name: "📊 데이터 엔지니어",
+    isAvailable: false,
     sections: [
       // 다른 구성의 섹션들
     ],

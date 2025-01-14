@@ -132,9 +132,14 @@ const Header = ({
                   {({ active }) => (
                     <button
                       onClick={() => onTemplateSelect(template)}
+                      disabled={!template.isAvailable}
                       className={`${
                         active ? "bg-gray-100" : ""
-                      } flex w-full px-4 py-2 text-sm`}
+                      } flex w-full px-4 py-2 text-sm ${
+                        !template.isAvailable
+                          ? "opacity-50 cursor-not-allowed text-gray-400"
+                          : ""
+                      }`}
                     >
                       {template.name}
                     </button>
