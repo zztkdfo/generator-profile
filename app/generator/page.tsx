@@ -371,20 +371,24 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen h-screen bg-gray-100">
       {/* Topbar - 모바일에서만 표시 */}
-      <Topbar
-        menuItems={menuItems}
-        activeMenu={activeMenu}
-        handleActiveMenuChange={handleActiveMenuChange}
-      />
+      {selectedTemplateId && (
+        <Topbar
+          menuItems={menuItems}
+          activeMenu={activeMenu}
+          handleActiveMenuChange={handleActiveMenuChange}
+        />
+      )}
 
       {/* Sidebar - 데스크톱에서만 표시 */}
       <div className="hidden md:block md:h-screen bg-[#1a1f2c] shadow-lg">
-        <Sidebar
-          menuItems={menuItems}
-          activeMenu={activeMenu}
-          handleMenuUpdate={handleMenuUpdate}
-          handleActiveMenuChange={handleActiveMenuChange}
-        />
+        {selectedTemplateId && (
+          <Sidebar
+            menuItems={menuItems}
+            activeMenu={activeMenu}
+            handleMenuUpdate={handleMenuUpdate}
+            handleActiveMenuChange={handleActiveMenuChange}
+          />
+        )}
       </div>
 
       {/* 콘텐츠 영역 */}
@@ -399,10 +403,106 @@ export default function Home() {
           onTemplateSelect={handleTemplateSelect}
         />
 
-        <Content
-          renderActiveSection={renderActiveSection}
-          markdownPreview={markdownPreview}
-        />
+        {!selectedTemplateId ? (
+          <div className="flex-1 overflow-y-auto bg-gradient-to-b from-gray-50 to-white">
+            <div className="min-h-full flex items-center justify-center p-4">
+              <div className="text-center space-y-6 p-4 sm:p-8 max-w-3xl w-full my-8">
+                <div className="animate-bounce text-6xl mb-6">✨</div>
+                <h2 className="text-3xl font-bold text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  멋진 GitHub 프로필을 만들어보세요!
+                </h2>
+                <p className="text-gray-600 text-lg">
+                  상단의 템플릿을 선택하여 나만의 특별한 프로필을 쉽고 빠르게
+                  생성할 수 있습니다.
+                </p>
+
+                <div className="grid md:grid-cols-3 gap-4 my-8">
+                  <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    <div className="text-3xl mb-3">🎨</div>
+                    <h3 className="font-semibold text-gray-800 mb-2">
+                      다양한 템플릿
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      취향에 맞는 템플릿을 선택하세요
+                    </p>
+                  </div>
+                  <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    <div className="text-3xl mb-3">⚡️</div>
+                    <h3 className="font-semibold text-gray-800 mb-2">
+                      빠른 생성
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      클릭 몇 번으로 완성하세요
+                    </p>
+                  </div>
+                  <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    <div className="text-3xl mb-3">🔄</div>
+                    <h3 className="font-semibold text-gray-800 mb-2">
+                      실시간 미리보기
+                    </h3>
+                    <p className="text-gray-600 text-sm">바로바로 확인하세요</p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 shadow-sm">
+                  <h3 className="font-bold text-xl text-gray-800 mb-4">
+                    간단한 사용 방법 🚀
+                  </h3>
+                  <div className="grid md:grid-cols-4 gap-4 relative">
+                    {[
+                      { icon: "🎯", text: "템플릿 선택하기" },
+                      { icon: "✏️", text: "내용 수정하기" },
+                      { icon: "📋", text: "마크다운 복사하기" },
+                      { icon: "✅", text: "GitHub에 붙여넣기" },
+                    ].map((step, index) => (
+                      <div key={index} className="relative">
+                        {/* 순서 표시 원형 배지 */}
+                        <div className="absolute -top-3 -left-3 w-6 h-6 rounded-full bg-blue-600 text-white text-sm flex items-center justify-center font-bold z-10">
+                          {index + 1}
+                        </div>
+
+                        <div className="flex flex-col items-center p-4 bg-white rounded-lg relative">
+                          <div className="text-2xl mb-2">{step.icon}</div>
+                          <div className="text-sm text-gray-700">
+                            {step.text}
+                          </div>
+                        </div>
+
+                        {/* 진행 표시줄 (모바일) */}
+                        {index < 3 && (
+                          <div className="md:hidden h-8 w-0.5 bg-gray-200 absolute left-1/2 transform -translate-x-1/2 top-full" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 p-4 bg-white rounded-lg border border-blue-100 text-left">
+                    <div className="text-blue-500 mt-1"></div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">
+                        💡 GitHub 프로필 설정 방법
+                      </h4>
+                      <ol className="text-sm text-gray-600 space-y-1 list-decimal list-inside">
+                        <li>
+                          GitHub에서 새로운 저장소 생성 (이름:
+                          username/username)
+                        </li>
+                        <li>README.md 파일 생성 선택</li>
+                        <li>복사한 마크다운을 README.md에 붙여넣기</li>
+                        <li>변경사항 저장하면 프로필에 바로 반영!</li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Content
+            renderActiveSection={renderActiveSection}
+            markdownPreview={markdownPreview}
+          />
+        )}
       </div>
     </div>
   );
