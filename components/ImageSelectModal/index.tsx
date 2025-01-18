@@ -1,4 +1,5 @@
 import { PROFILE_IMAGES } from "../sections/data/images";
+import { useState, useEffect } from "react";
 
 interface ImageSelectModalProps {
   isOpen: boolean;
@@ -13,6 +14,17 @@ const ImageSelectModal = ({
   onSelect,
   selectedImage,
 }: ImageSelectModalProps) => {
+  const [loadedImages, setLoadedImages] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+
+  useEffect(() => {
+    // 모달이 열릴 때 이미지 로딩 상태 초기화
+    if (isOpen) {
+      setLoadedImages({});
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
@@ -31,7 +43,7 @@ const ImageSelectModal = ({
           {PROFILE_IMAGES.map((image) => (
             <div
               key={image.id}
-              className={`cursor-pointer hover:opacity-80 transition ${
+              className={`cursor-pointer hover:opacity-80 transition relative ${
                 selectedImage === image.src
                   ? "ring-4 ring-blue-500 rounded-lg"
                   : ""
@@ -41,10 +53,21 @@ const ImageSelectModal = ({
                 onClose();
               }}
             >
+              {!loadedImages[image.src] && (
+                <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg" />
+              )}
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-auto rounded-lg"
+                className={`w-full h-auto rounded-lg ${
+                  !loadedImages[image.src] ? "invisible" : ""
+                }`}
+                onLoad={() => {
+                  setLoadedImages((prev) => ({
+                    ...prev,
+                    [image.src]: true,
+                  }));
+                }}
               />
             </div>
           ))}
