@@ -85,89 +85,96 @@ export const templates: Template[] = [
         component: SkillsSection,
         initialData: {
           skills: [
+            // Core Development
+            { id: "1", name: "React", level: 5, category: "Core Development" },
             {
-              id: "1733422063831",
-              name: "React",
-              level: 3,
-              category: "Frontend",
-            },
-            {
-              id: "1733422066313",
+              id: "2",
               name: "Next.js",
-              level: 3,
-              category: "Frontend",
+              level: 4,
+              category: "Core Development",
             },
             {
-              id: "1733422084435",
+              id: "3",
               name: "TypeScript",
-              level: 3,
-              category: "Frontend",
+              level: 4,
+              category: "Core Development",
             },
             {
-              id: "1733422087358",
+              id: "4",
               name: "JavaScript",
-              level: 3,
-              category: "Frontend",
+              level: 5,
+              category: "Core Development",
             },
             {
-              id: "1733422089003",
-              name: "Tailwind CSS",
-              level: 3,
-              category: "Frontend",
+              id: "5",
+              name: "HTML/CSS",
+              level: 5,
+              category: "Core Development",
             },
             {
-              id: "1733422090690",
+              id: "6",
+              name: "Redux/Recoil",
+              level: 4,
+              category: "Core Development",
+            },
+            {
+              id: "7",
               name: "React Query",
-              level: 3,
-              category: "Frontend",
+              level: 4,
+              category: "Core Development",
             },
+
+            // Development Tools
+            { id: "8", name: "Git", level: 4, category: "Development Tools" },
             {
-              id: "1733422096451",
-              name: "Node.js",
-              level: 3,
-              category: "Backend",
-            },
-            {
-              id: "1733422098722",
-              name: "Python",
-              level: 3,
-              category: "Backend",
-            },
-            {
-              id: "1733422100874",
-              name: "Spring",
-              level: 3,
-              category: "Backend",
-            },
-            {
-              id: "1733422111649",
-              name: "Git",
-              level: 3,
-              category: "Other",
-            },
-            {
-              id: "1733422115500",
+              id: "9",
               name: "VS Code",
-              level: 3,
-              category: "Other",
+              level: 5,
+              category: "Development Tools",
             },
             {
-              id: "1733422120622",
-              name: "Swagger",
+              id: "10",
+              name: "Webpack/Vite",
               level: 3,
-              category: "Other",
+              category: "Development Tools",
             },
             {
-              id: "1733422123189",
-              name: "Slack",
+              id: "11",
+              name: "Jest/RTL",
               level: 3,
-              category: "Other",
+              category: "Development Tools",
             },
             {
-              id: "1733422127529",
+              id: "12",
+              name: "ESLint/Prettier",
+              level: 4,
+              category: "Development Tools",
+            },
+
+            // Collaboration Tools
+            {
+              id: "13",
               name: "Figma",
+              level: 4,
+              category: "Collaboration Tools",
+            },
+            {
+              id: "14",
+              name: "Swagger",
+              level: 4,
+              category: "Collaboration Tools",
+            },
+            {
+              id: "15",
+              name: "Jira",
               level: 3,
-              category: "Other",
+              category: "Collaboration Tools",
+            },
+            {
+              id: "16",
+              name: "Slack",
+              level: 4,
+              category: "Collaboration Tools",
             },
           ],
         },
@@ -202,17 +209,380 @@ export const templates: Template[] = [
   {
     id: "template2",
     name: "💻 프론트엔드 개발자",
-    isAvailable: false,
+    isAvailable: true,
     sections: [
-      // 다른 구성의 섹션들
+      {
+        id: "1",
+        title: "Introduction",
+        component: IntroSection,
+        initialData: {
+          mainTitle: "프론트엔드 개발자 OOO입니다",
+          email: "frontend@email.com",
+          description: `사용자 경험을 최우선으로 생각하는 프론트엔드 개발자입니다. 🎨
+3년차 웹 개발자로서 모던 프론트엔드 기술 스택을 활용한 반응형 웹 애플리케이션 개발에 전문성을 가지고 있습니다. 💻
+성능 최적화와 웹 접근성 향상에 대한 깊은 관심을 가지고 있으며, 새로운 기술 학습을 즐깁니다. ⚡
+
+<i><strong>클린 코드와 사용자 중심 설계로 더 나은 웹을 만들어갑니다.</strong></i>`,
+          showImage: true,
+          imageSrc:
+            "https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif", // 프로그래밍 언어 아이콘 이미지
+        },
+      },
+      {
+        id: "2",
+        title: "Hello World",
+        component: HelloWorldSection,
+        initialData: {
+          words: [
+            {
+              id: "1",
+              text: "🎨 UI/UX에 대한 깊은 이해를 바탕으로 사용자 친화적인 인터페이스를 구현합니다",
+              placeholder: "UI/UX 소개",
+            },
+            {
+              id: "2",
+              text: "⚡ React, Next.js, TypeScript 기반의 웹 애플리케이션 개발",
+              placeholder: "주요 기술 스택",
+            },
+            {
+              id: "3",
+              text: "🔍 웹 성능 최적화와 SEO 개선에 대한 경험이 풍부합니다",
+              placeholder: "전문 분야",
+            },
+            {
+              id: "4",
+              text: "📱 반응형 웹 디자인과 크로스 브라우징 호환성을 고려한 개발",
+              placeholder: "개발 방식",
+            },
+            {
+              id: "5",
+              text: "🌱 현재 WebGL, Three.js를 학습하며 인터랙티브 웹 개발에 도전 중입니다",
+              placeholder: "학습 중인 기술",
+            },
+            {
+              id: "6",
+              text: "🔧 코드 품질과 테스트 자동화에 대한 높은 관심을 가지고 있습니다",
+              placeholder: "코드 품질 관리",
+            },
+            {
+              id: "7",
+              text: "👥 기술 블로그 운영과 학습을 통해 꾸준히 성장하고 있습니다",
+              placeholder: "기술 블로그 운영",
+            },
+          ],
+          showImage: true,
+          imageSrc:
+            "https://github.com/user-attachments/assets/eb7ea291-99db-4225-b84b-2d597dd20370",
+        },
+      },
+      {
+        id: "3",
+        title: "Skills",
+        component: SkillsSection,
+        initialData: {
+          skills: [
+            // Core Development
+            { id: "1", name: "React", level: 5, category: "Core Development" },
+            {
+              id: "2",
+              name: "Next.js",
+              level: 4,
+              category: "Core Development",
+            },
+            {
+              id: "3",
+              name: "TypeScript",
+              level: 4,
+              category: "Core Development",
+            },
+            {
+              id: "4",
+              name: "JavaScript",
+              level: 5,
+              category: "Core Development",
+            },
+            {
+              id: "5",
+              name: "HTML/CSS",
+              level: 5,
+              category: "Core Development",
+            },
+            {
+              id: "6",
+              name: "Redux/Recoil",
+              level: 4,
+              category: "Core Development",
+            },
+            {
+              id: "7",
+              name: "React Query",
+              level: 4,
+              category: "Core Development",
+            },
+
+            // Development Tools
+            { id: "8", name: "Git", level: 4, category: "Development Tools" },
+            {
+              id: "9",
+              name: "VS Code",
+              level: 5,
+              category: "Development Tools",
+            },
+            {
+              id: "10",
+              name: "Webpack/Vite",
+              level: 3,
+              category: "Development Tools",
+            },
+            {
+              id: "11",
+              name: "Jest/RTL",
+              level: 3,
+              category: "Development Tools",
+            },
+            {
+              id: "12",
+              name: "ESLint/Prettier",
+              level: 4,
+              category: "Development Tools",
+            },
+
+            // Collaboration Tools
+            {
+              id: "13",
+              name: "Figma",
+              level: 4,
+              category: "Tools",
+            },
+            {
+              id: "14",
+              name: "Swagger",
+              level: 4,
+              category: "Tools",
+            },
+            {
+              id: "15",
+              name: "Jira",
+              level: 3,
+              category: "Tools",
+            },
+            {
+              id: "16",
+              name: "Slack",
+              level: 4,
+              category: "Tools",
+            },
+          ],
+        },
+      },
+      {
+        id: "4",
+        title: "Articles",
+        component: ArticlesSection,
+        initialData: {
+          mainBlog: "https://frontend-blog.dev",
+          articles: [
+            {
+              id: "1",
+              title: "React 성능 최적화: 실전 가이드",
+              url: "https://frontend-blog.dev/react-performance",
+            },
+            {
+              id: "2",
+              title: "Next.js 13의 새로운 기능과 App Router 전환기",
+              url: "https://frontend-blog.dev/nextjs-13",
+            },
+            {
+              id: "3",
+              title: "프론트엔드 개발자의 웹 접근성 고려사항",
+              url: "https://frontend-blog.dev/web-accessibility",
+            },
+          ],
+        },
+      },
     ],
   },
   {
     id: "template3",
     name: "⚙️ 백엔드 개발자",
-    isAvailable: false,
+    isAvailable: true,
     sections: [
-      // 다른 구성의 섹션들
+      {
+        id: "1",
+        title: "Introduction",
+        component: IntroSection,
+        initialData: {
+          mainTitle: "백엔드 개발자 OOO입니다",
+          email: "backend@email.com",
+          description: `안녕하세요, 백엔드 개발자입니다. 서버 아키텍처 설계와 데이터베이스 최적화에 전문성을 가지고 있습니다. 🔧
+효율적인 API 설계와 데이터 처리에 대한 깊은 이해를 바탕으로 안정적인 시스템을 구축합니다. 📊
+새로운 기술을 배우고 적용하는 것을 즐기며, 팀과의 협업을 통해 더 나은 솔루션을 찾고자 합니다. 🤝
+
+<i><strong>안정성과 확장성을 고려한 백엔드 시스템을 설계합니다.</strong></i>`,
+          showImage: true,
+          imageSrc:
+            "https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif", // 프로그래밍 언어 아이콘 이미지
+        },
+      },
+      {
+        id: "2",
+        title: "Hello World",
+        component: HelloWorldSection,
+        initialData: {
+          words: [
+            {
+              id: "1",
+              text: "🔧 Node.js, Express 기반의 서버 개발",
+              placeholder: "주요 기술 스택",
+            },
+            {
+              id: "2",
+              text: "📊 데이터베이스 설계 및 최적화 경험",
+              placeholder: "전문 분야",
+            },
+            {
+              id: "3",
+              text: "🔍 RESTful API 및 GraphQL 설계",
+              placeholder: "API 설계",
+            },
+            {
+              id: "4",
+              text: "🌐 클라우드 서비스(AWS, GCP) 활용",
+              placeholder: "클라우드 서비스",
+            },
+            {
+              id: "5",
+              text: "🔒 보안 및 인증 시스템 구현",
+              placeholder: "보안",
+            },
+            {
+              id: "6",
+              text: "📈 성능 모니터링 및 로깅 시스템 구축",
+              placeholder: "성능 모니터링",
+            },
+            {
+              id: "7",
+              text: "👥 팀 협업과 코드 리뷰를 통한 지속적인 개선",
+              placeholder: "팀 협업",
+            },
+          ],
+          showImage: true,
+          imageSrc:
+            "https://github.com/user-attachments/assets/eb7ea291-99db-4225-b84b-2d597dd20370",
+        },
+      },
+      {
+        id: "3",
+        title: "Skills",
+        component: SkillsSection,
+        initialData: {
+          skills: [
+            // Core Development
+            {
+              id: "1",
+              name: "Node.js",
+              level: 5,
+              category: "Core Development",
+            },
+            {
+              id: "2",
+              name: "Express",
+              level: 4,
+              category: "Core Development",
+            },
+            {
+              id: "3",
+              name: "MongoDB",
+              level: 4,
+              category: "Core Development",
+            },
+            {
+              id: "4",
+              name: "PostgreSQL",
+              level: 5,
+              category: "Core Development",
+            },
+            {
+              id: "5",
+              name: "Docker",
+              level: 4,
+              category: "Core Development",
+            },
+            {
+              id: "6",
+              name: "Kubernetes",
+              level: 3,
+              category: "Core Development",
+            },
+
+            // Development Tools
+            { id: "7", name: "Git", level: 4, category: "Development Tools" },
+            {
+              id: "8",
+              name: "VS Code",
+              level: 5,
+              category: "Development Tools",
+            },
+            {
+              id: "9",
+              name: "Jest",
+              level: 3,
+              category: "Development Tools",
+            },
+            {
+              id: "10",
+              name: "ESLint",
+              level: 4,
+              category: "Development Tools",
+            },
+
+            // Collaboration Tools
+            {
+              id: "11",
+              name: "Jira",
+              level: 3,
+              category: "Collaboration Tools",
+            },
+            {
+              id: "12",
+              name: "Confluence",
+              level: 4,
+              category: "Collaboration Tools",
+            },
+            {
+              id: "13",
+              name: "Slack",
+              level: 4,
+              category: "Collaboration Tools",
+            },
+          ],
+        },
+      },
+      {
+        id: "4",
+        title: "Articles",
+        component: ArticlesSection,
+        initialData: {
+          mainBlog: "https://backend-blog.dev",
+          articles: [
+            {
+              id: "1",
+              title: "Node.js 성능 최적화: 실전 가이드",
+              url: "https://backend-blog.dev/nodejs-performance",
+            },
+            {
+              id: "2",
+              title: "Docker와 Kubernetes를 활용한 배포 전략",
+              url: "https://backend-blog.dev/docker-kubernetes",
+            },
+            {
+              id: "3",
+              title: "백엔드 개발자의 데이터베이스 설계 고려사항",
+              url: "https://backend-blog.dev/database-design",
+            },
+          ],
+        },
+      },
     ],
   },
   {

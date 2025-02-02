@@ -18,17 +18,8 @@ const SkillsSection = ({
   const [skillsData, setSkillsData] = useState<SkillsDataType>(initialData);
 
   const addSkill = () => {
-    const newId = Date.now().toString();
-    const newSkills = [
-      ...skillsData.skills,
-      {
-        id: newId,
-        name: "",
-        level: 3,
-        category: "Frontend",
-      },
-    ];
-    handleChange("skills", newSkills);
+    setSelectedSkillIndex(skillsData.skills.length);
+    setIsIconSelectorOpen(true);
   };
 
   const removeSkill = (index: number) => {
@@ -65,7 +56,11 @@ const SkillsSection = ({
     onClose: () => void;
     onSelect: (skillName: string) => void;
   }) => {
-    const categories = ["Frontend", "Backend", "DevOps", "Mobile", "Other"];
+    const categories = [
+      "Core Development",
+      "Development Tools",
+      "Collaboration Tools",
+    ];
 
     return (
       <Dialog open={isOpen} onClose={onClose} className="relative z-50">
@@ -121,7 +116,7 @@ const SkillsSection = ({
           </p>
           {skillsData.skills.map((skill, index) => (
             <div
-              key={skill.id}
+              key={skill.id || `skill-${index}`}
               className="flex flex-wrap items-center gap-2 mb-2"
             >
               <div className="w-8 shrink-0">
@@ -171,13 +166,26 @@ const SkillsSection = ({
         isOpen={isIconSelectorOpen}
         onClose={() => setIsIconSelectorOpen(false)}
         onSelect={(skillName) => {
+          const newSkills = [...skillsData.skills];
           if (selectedSkillIndex !== null) {
-            const newSkills = [...skillsData.skills];
-            newSkills[selectedSkillIndex].name = skillName;
-            newSkills[selectedSkillIndex].category =
-              skillIcons[skillName].category;
-            handleChange("skills", newSkills);
+            // 기존 스킬 업데이트
+            newSkills[selectedSkillIndex] = {
+              ...newSkills[selectedSkillIndex],
+              name: skillName,
+              category: skillIcons[skillName].category,
+            };
+          } else {
+            // 새 스킬 추가
+            const newId = Date.now().toString();
+            newSkills.push({
+              id: newId,
+              name: skillName,
+              level: 3,
+              category: skillIcons[skillName].category,
+            });
           }
+          handleChange("skills", newSkills);
+          setSelectedSkillIndex(null); // 인덱스 초기화
         }}
       />
     </div>
