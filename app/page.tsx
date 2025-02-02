@@ -158,7 +158,12 @@ export default function LandingPage(): React.ReactNode {
             <h2 className="text-3xl font-bold">업데이트 예정 기능</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 relative">
+              <div className="absolute top-4 right-4">
+                <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                  업데이트 적용
+                </span>
+              </div>
               <div className="text-2xl mb-4">🎨</div>
               <h3 className="font-bold mb-2">다양한 템플릿</h3>
               <p className="text-gray-600">
