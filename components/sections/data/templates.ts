@@ -113,7 +113,7 @@ export const templates: Template[] = [
             },
             {
               id: "6",
-              name: "Redux/Recoil",
+              name: "Redux",
               level: 4,
               category: "Core Development",
             },
@@ -123,29 +123,41 @@ export const templates: Template[] = [
               level: 4,
               category: "Core Development",
             },
-
-            // Development Tools
-            { id: "8", name: "Git", level: 4, category: "Development Tools" },
+            {
+              id: "8",
+              name: "Jotai",
+              level: 4,
+              category: "Core Development",
+            },
             {
               id: "9",
+              name: "Zustand",
+              level: 4,
+              category: "Core Development",
+            },
+
+            // Development Tools
+            { id: "10", name: "Git", level: 4, category: "Development Tools" },
+            {
+              id: "11",
               name: "VS Code",
               level: 5,
               category: "Development Tools",
             },
             {
-              id: "10",
+              id: "12",
               name: "Webpack/Vite",
               level: 3,
               category: "Development Tools",
             },
             {
-              id: "11",
+              id: "13",
               name: "Jest/RTL",
               level: 3,
               category: "Development Tools",
             },
             {
-              id: "12",
+              id: "14",
               name: "ESLint/Prettier",
               level: 4,
               category: "Development Tools",
@@ -153,25 +165,25 @@ export const templates: Template[] = [
 
             // Collaboration Tools
             {
-              id: "13",
+              id: "15",
               name: "Figma",
               level: 4,
               category: "Collaboration Tools",
             },
             {
-              id: "14",
+              id: "16",
               name: "Swagger",
               level: 4,
               category: "Collaboration Tools",
             },
             {
-              id: "15",
+              id: "17",
               name: "Jira",
               level: 3,
               category: "Collaboration Tools",
             },
             {
-              id: "16",
+              id: "18",
               name: "Slack",
               level: 4,
               category: "Collaboration Tools",
@@ -218,11 +230,11 @@ export const templates: Template[] = [
         initialData: {
           mainTitle: "프론트엔드 개발자 OOO입니다",
           email: "frontend@email.com",
-          description: `사용자 경험을 최우선으로 생각하는 프론트엔드 개발자입니다. 🎨
-3년차 웹 개발자로서 모던 프론트엔드 기술 스택을 활용한 반응형 웹 애플리케이션 개발에 전문성을 가지고 있습니다. 💻
-성능 최적화와 웹 접근성 향상에 대한 깊은 관심을 가지고 있으며, 새로운 기술 학습을 즐깁니다. ⚡
+          description: `최신 프론트엔드 기술을 활용하여 사용자 경험을 극대화하는 개발자입니다. 🎨
+React와 Next.js를 기반으로 한 웹 애플리케이션 개발에 전문성을 가지고 있으며, TypeScript와 Tailwind CSS를 적극 활용합니다. 💻
+빠른 빌드 도구인 Vite를 사용하여 개발 효율성을 높이고 있습니다. ⚡
 
-<i><strong>클린 코드와 사용자 중심 설계로 더 나은 웹을 만들어갑니다.</strong></i>`,
+<i><strong>모던 웹 기술로 사용자 중심의 인터페이스를 구현합니다.</strong></i>`,
           showImage: true,
           imageSrc:
             "https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif", // 프로그래밍 언어 아이콘 이미지
@@ -286,27 +298,22 @@ export const templates: Template[] = [
             {
               id: "2",
               name: "Next.js",
-              level: 4,
+              level: 5,
               category: "Core Development",
             },
             {
               id: "3",
               name: "TypeScript",
-              level: 4,
+              level: 5,
               category: "Core Development",
             },
             {
               id: "4",
-              name: "JavaScript",
-              level: 5,
+              name: "Tailwind CSS",
+              level: 4,
               category: "Core Development",
             },
-            {
-              id: "5",
-              name: "HTML/CSS",
-              level: 5,
-              category: "Core Development",
-            },
+            { id: "5", name: "Vite", level: 4, category: "Development Tools" },
             {
               id: "6",
               name: "Redux/Recoil",
@@ -319,29 +326,41 @@ export const templates: Template[] = [
               level: 4,
               category: "Core Development",
             },
-
-            // Development Tools
-            { id: "8", name: "Git", level: 4, category: "Development Tools" },
+            {
+              id: "8",
+              name: "Jotai",
+              level: 4,
+              category: "Core Development",
+            },
             {
               id: "9",
+              name: "Zustand",
+              level: 4,
+              category: "Core Development",
+            },
+
+            // Development Tools
+            { id: "10", name: "Git", level: 4, category: "Development Tools" },
+            {
+              id: "11",
               name: "VS Code",
               level: 5,
               category: "Development Tools",
             },
             {
-              id: "10",
+              id: "12",
               name: "Webpack/Vite",
               level: 3,
               category: "Development Tools",
             },
             {
-              id: "11",
+              id: "13",
               name: "Jest/RTL",
               level: 3,
               category: "Development Tools",
             },
             {
-              id: "12",
+              id: "14",
               name: "ESLint/Prettier",
               level: 4,
               category: "Development Tools",
@@ -349,25 +368,25 @@ export const templates: Template[] = [
 
             // Collaboration Tools
             {
-              id: "13",
+              id: "15",
               name: "Figma",
               level: 4,
               category: "Tools",
             },
             {
-              id: "14",
+              id: "16",
               name: "Swagger",
               level: 4,
               category: "Tools",
             },
             {
-              id: "15",
+              id: "17",
               name: "Jira",
               level: 3,
               category: "Tools",
             },
             {
-              id: "16",
+              id: "18",
               name: "Slack",
               level: 4,
               category: "Tools",
@@ -414,9 +433,9 @@ export const templates: Template[] = [
         initialData: {
           mainTitle: "백엔드 개발자 OOO입니다",
           email: "backend@email.com",
-          description: `안녕하세요, 백엔드 개발자입니다. 서버 아키텍처 설계와 데이터베이스 최적화에 전문성을 가지고 있습니다. 🔧
-효율적인 API 설계와 데이터 처리에 대한 깊은 이해를 바탕으로 안정적인 시스템을 구축합니다. 📊
-새로운 기술을 배우고 적용하는 것을 즐기며, 팀과의 협업을 통해 더 나은 솔루션을 찾고자 합니다. 🤝
+          description: `안녕하세요, 최신 백엔드 기술을 활용하는 개발자입니다. 서버 아키텍처 설계와 데이터베이스 최적화에 전문성을 가지고 있습니다. 🔧
+Node.js와 Express를 기반으로 한 서버 개발에 능숙하며, NestJS와 GraphQL을 활용하여 효율적인 API를 설계합니다. 📊
+Docker와 Kubernetes를 사용하여 안정적인 시스템을 구축하고, AWS를 통해 클라우드 서비스를 활용합니다. 🤝
 
 <i><strong>안정성과 확장성을 고려한 백엔드 시스템을 설계합니다.</strong></i>`,
           showImage: true,
@@ -478,79 +497,83 @@ export const templates: Template[] = [
         initialData: {
           skills: [
             // Core Development
+            { id: "1", name: "Spring", level: 4, category: "Core Development" },
             {
-              id: "1",
+              id: "2",
               name: "Node.js",
               level: 5,
               category: "Core Development",
             },
             {
-              id: "2",
+              id: "3",
               name: "Express",
               level: 4,
               category: "Core Development",
             },
-            {
-              id: "3",
-              name: "MongoDB",
-              level: 4,
-              category: "Core Development",
-            },
-            {
-              id: "4",
-              name: "PostgreSQL",
-              level: 5,
-              category: "Core Development",
-            },
+            { id: "4", name: "NestJS", level: 4, category: "Core Development" },
             {
               id: "5",
-              name: "Docker",
+              name: "GraphQL",
               level: 4,
               category: "Core Development",
             },
+            { id: "6", name: "Docker", level: 4, category: "Core Development" },
             {
-              id: "6",
+              id: "7",
               name: "Kubernetes",
               level: 3,
               category: "Core Development",
             },
-
-            // Development Tools
-            { id: "7", name: "Git", level: 4, category: "Development Tools" },
+            { id: "8", name: "AWS", level: 4, category: "Development Tools" },
+            // 추가된 기술
+            { id: "9", name: "MySQL", level: 4, category: "Core Development" },
             {
-              id: "8",
+              id: "10",
+              name: "PostgreSQL",
+              level: 4,
+              category: "Core Development",
+            },
+            {
+              id: "11",
+              name: "MongoDB",
+              level: 3,
+              category: "Core Development",
+            },
+            // Development Tools
+            { id: "12", name: "Git", level: 4, category: "Development Tools" },
+            {
+              id: "13",
               name: "VS Code",
               level: 5,
               category: "Development Tools",
             },
             {
-              id: "9",
-              name: "Jest",
-              level: 3,
-              category: "Development Tools",
-            },
-            {
-              id: "10",
-              name: "ESLint",
+              id: "16",
+              name: "IntelliJ",
               level: 4,
               category: "Development Tools",
             },
-
+            {
+              id: "17",
+              name: "Spring Tool Suite",
+              level: 4,
+              category: "Development Tools",
+            },
             // Collaboration Tools
             {
-              id: "11",
+              id: "17",
               name: "Jira",
               level: 3,
               category: "Collaboration Tools",
             },
             {
-              id: "12",
+              id: "18",
               name: "Confluence",
               level: 4,
               category: "Collaboration Tools",
             },
             {
-              id: "13",
+              id: "19",
               name: "Slack",
               level: 4,
               category: "Collaboration Tools",
